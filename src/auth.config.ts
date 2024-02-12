@@ -4,10 +4,14 @@ import type { NextAuthConfig } from "next-auth"
 import User from "./models/userModel";
 import bcrypt from "bcryptjs";
 import { connectToMongoDB } from "./lib/db";
-
+import Github from "next-auth/providers/github";
 
 export default {
   providers: [
+    Github({
+      clientId: process.env.GITHUB_ID,
+      clientSecret: process.env.GITHUB_SECRET
+    }),
     Credentials({
       async authorize(credentials:any) {
 
@@ -22,7 +26,7 @@ export default {
         if (!user) {
           return null;
         }
-
+        
         const isPasswordCorrect = await bcrypt.compare(password, user.password || "");
 
         if (isPasswordCorrect) {

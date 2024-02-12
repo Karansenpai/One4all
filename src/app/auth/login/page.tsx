@@ -1,14 +1,17 @@
-
+"use client"
 import { loginUser } from "@/actions/login";
+import { signIn } from "next-auth/react";
 import React from "react";
 
-const Login = async () => {
+const Login = () => {
 
-
+  const loginGithub = async () =>{
+      await signIn("github");
+  }
   return (
   <div>
-      <form >
-        <button>Click to login</button>
+      <form>
+        <button onClick={loginGithub}>Click to login</button>
       </form>
 
       <form action={loginUser}>
