@@ -6,6 +6,10 @@ import { AuthError } from "next-auth";
 
 
 
+export const handleGithubLogin = async () =>{
+    await signIn("github");
+}
+
 export const loginUser = async(Formdata:FormData) => {
     const { username,password} = Object.fromEntries(Formdata);
 

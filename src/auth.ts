@@ -1,6 +1,7 @@
 import NextAuth, { Session } from "next-auth"
 import authConfig from "./auth.config"
 import User from "./models/userModel";
+import { connectToMongoDB } from "./lib/db";
 
 
 export const {
@@ -10,9 +11,30 @@ export const {
   auth,
 } = NextAuth({
   callbacks:{
+    async signIn({ user, account, profile, email, credentials }) {
+      if (account?.provider === "github") {
+        await connectToMongoDB();
+        try {
+          const user = await User.findOne({ email: profile?.email });
+
+          if (!user) {
+            const newUser = new User({
+              username: profile?.login,
+              email: profile?.email,
+              image: profile?.avatar_url,
+            });
+
+            await newUser.save();
+          }
+        } catch (err) {
+          console.log(err);
+          return false;
+        }
+      }
+      return true
+    },
     async session({token,session}){
-      
-      console.log(token);
+
       if(token.sub && session.user){
         session.user.id = token.sub;
         session.user.isAdmin = token.isAdmin; 
@@ -25,7 +47,7 @@ export const {
 
       if(!token.sub) return token;
 
-      const existingUser = await User.findById(token.sub);
+      const existingUser = await User.findOne({email : token.email});
 
       if(!existingUser) return token;
 
@@ -33,6 +55,7 @@ export const {
       token.username = existingUser.username;
       token.picture = existingUser.avatar || "";
 
+      token.isAdmin = false;
 
       return token;
     }
