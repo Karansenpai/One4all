@@ -1,14 +1,8 @@
-"use client"
 
-// import { handleGithubLogin, loginUser } from "@/lib/action";
-// import { auth, signIn, signOut } from "@/lib/auth";
 import React from "react";
 
 const Login = async () => {
 
-
-  // const session = await auth();
-  // console.log("session from login",session);
 
   return (
   <div>
