@@ -1,20 +1,10 @@
-// import { registerUser } from "@/lib/action";
-import React from "react";
+
+import RegisterForm from "@/components/auth/RegisterForm";
 
 const RegisterPage = () => {
   return (
     <div>
-      <form>
-        <input type="text" placeholder="username" name="username" />
-        <input type="email" placeholder="email" name="email" />
-        <input type="password" placeholder="password" name="password" />
-        <input
-          type="password"
-          placeholder="confirmPassword"
-          name="confirm-password"
-        />
-        <button>Click to register</button>
-      </form>
+      <RegisterForm/>
     </div>
   );
 };
