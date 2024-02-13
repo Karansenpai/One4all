@@ -19,6 +19,7 @@ export default auth((req) => {
     const isLoggedIn = !!req.auth;
 
     // const isLoggedIn = true;
+    console.log(req.auth, nextUrl.pathname, isLoggedIn, "middleware");
 
     //don't have anything to do in this
     const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);

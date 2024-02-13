@@ -37,7 +37,9 @@ export const {
 
       if(token.sub && session.user){
         session.user.id = token.sub;
-        session.user.isAdmin = token.isAdmin; 
+        //@ts-ignore
+        session.user.isAdmin = token.isAdmin;
+         //@ts-ignore 
         session.user.username = token.username;
       }
 

@@ -63,6 +63,6 @@ const postSchema = new mongoose.Schema({
     timestamps: true,
 })
 
-const User: Model<IPostDocument> = mongoose.models?.User || mongoose.model("User", postSchema);
+const Post: Model<IPostDocument> = mongoose.models?.Post || mongoose.model("Post", postSchema);
 
-export default User;
+export default Post;
