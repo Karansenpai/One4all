@@ -10,6 +10,7 @@ export const {
   signOut,
   auth,
 } = NextAuth({
+
   callbacks:{
     async signIn({ user, account, profile, email, credentials }) {
       if (account?.provider === "github") {
@@ -63,6 +64,7 @@ export const {
     }
 
   },
-  session: {strategy: "jwt"},
   ...authConfig,
+  session: {strategy: "jwt"},
+  
 })

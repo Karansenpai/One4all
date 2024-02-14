@@ -6,7 +6,7 @@ export interface IUser {
 	email: string;
 	avatar?: string;
     password?: string;
-    studentId?: string;
+    userId?: string;
     isAdmin: boolean;
 }
 
@@ -37,7 +37,7 @@ const userSchema = new mongoose.Schema<IUserDocument>(
         password: {
             type: String,
         },
-        studentId: {
+        userId: {
             type: String,
         },
         isAdmin: {

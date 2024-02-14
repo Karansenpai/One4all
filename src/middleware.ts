@@ -9,18 +9,19 @@ import  {
 } from "@/route";
 
 
-
-
 const {auth} = NextAuth(authConfig);
+// import { auth } from "./auth";
+export default auth( async(req) => {
 
-export default auth((req) => {
+    const session = await auth();
+    console.log("session h",session);
 
     const {nextUrl} = req;
     const isLoggedIn = !!req.auth;
 
     // const isLoggedIn = true;
-    console.log(req.auth, nextUrl.pathname, isLoggedIn, "middleware");
-
+    // console.log(req.auth, nextUrl.pathname, isLoggedIn, "middleware");
+    // console.log(req.auth);
     //don't have anything to do in this
     const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
     const isPublicRoute = publicRoutes.includes(nextUrl.pathname);

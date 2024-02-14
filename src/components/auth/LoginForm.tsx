@@ -1,9 +1,12 @@
+
 import { Input } from "@/components/ui/input"
 import { Checkbox } from "@/components/ui/checkbox"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 
 export function LoginForm() {
+
+
   return (
     <div className="flex h-screen items-center justify-center bg-gradient-to-r from-purple-400 via-pink-500 to-red-500">
       <div className="w-[350px] rounded-2xl bg-white p-8 shadow-lg">
@@ -13,12 +16,12 @@ export function LoginForm() {
           </div>
           <form className="w-full">
             <div className="mb-4">
-              <label className="mb-2 block text-sm font-bold text-gray-700" htmlFor="email">
-                Email ID
+              <label className="mb-2 block text-sm font-bold text-gray-700" htmlFor="username">
+                Username
               </label>
               <div className="flex items-center rounded-md border px-3 py-2">
                 <MailIcon className="mr-2 h-5 w-5 text-gray-400" />
-                <Input id="email" placeholder="Email ID" type="email" />
+                <Input id="Username" placeholder="Username" type="Username" />
               </div>
             </div>
             <div className="mb-4">
@@ -41,7 +44,10 @@ export function LoginForm() {
                 Forgot Password?
               </Link>
             </div>
-            <Button className="w-full">LOGIN</Button>
+            <Button className="w-full" type="submit">LOGIN</Button>
+            <br/>
+
+
           </form>
         </div>
       </div>
