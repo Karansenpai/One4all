@@ -4,6 +4,16 @@ import User from "./models/userModel";
 import { connectToMongoDB } from "./lib/db";
 
 
+declare module "next-auth" {
+  interface Session {
+    user:{
+      id: string,
+      isAdmin: boolean,
+      username: string,
+    }
+  }
+}
+
 export const {
   handlers: { GET, POST },
   signIn,
@@ -17,6 +27,8 @@ export const {
         await connectToMongoDB();
         try {
           const user = await User.findOne({ email: profile?.email });
+
+          console.log(user);
 
           if (!user) {
             const newUser = new User({
@@ -38,10 +50,9 @@ export const {
 
       if(token.sub && session.user){
         session.user.id = token.sub;
-        //@ts-ignore
-        session.user.isAdmin = token.isAdmin;
-         //@ts-ignore 
-        session.user.username = token.username;
+        session.user.isAdmin = token.isAdmin as boolean;
+        session.user.username = token.username as string;
+       
       }
 
       return session;

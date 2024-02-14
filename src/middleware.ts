@@ -10,11 +10,9 @@ import  {
 
 
 const {auth} = NextAuth(authConfig);
-// import { auth } from "./auth";
 export default auth( async(req) => {
 
-    const session = await auth();
-    console.log("session h",session);
+
 
     const {nextUrl} = req;
     const isLoggedIn = !!req.auth;
