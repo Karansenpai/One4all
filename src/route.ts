@@ -2,7 +2,8 @@
 
 export const publicRoutes = [
     "/",
-    "/account"
+    "/account",
+    "/check"
 ];
 
 export const authRoutes = [

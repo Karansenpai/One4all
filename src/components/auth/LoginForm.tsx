@@ -16,7 +16,7 @@ export default function LoginForm() {
     <form className="mx-auto max-w-md space-y-8" action={loginUser}>
       <div className="space-y-2 text-center">
 
-        <p className="text-gray-500 dark:text-gray-400">Enter your information to get started</p>
+        <p>Enter your information to get started</p>
       </div>
       <div className="space-y-4">
         <div className="space-y-2">
@@ -35,7 +35,7 @@ export default function LoginForm() {
       </div>
     </form>
     <form action={handleGithubLogin}>
-    <Button className="w-full dark:bg-gray-800 dark:text-gray-50" variant="outline">
+    <Button className="w-full dark:bg-gray-800 dark:text-gray-50 gap-4" variant="outline">
       Sign in with GitHub
       <GithubIcon className="h-6 w-6" />
     </Button>

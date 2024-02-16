@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import SessionProvider from "@/lib/SessionProvider";
 import { auth } from "@/auth";
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -11,6 +9,7 @@ export const metadata: Metadata = {
 };
 
 import { Navbar } from "@/components/navbar/Navbar";
+import { ThemeProvider } from "@/components/ThemeProvider";
 export default async function RootLayout({
   children,
 }: Readonly<{
@@ -19,11 +18,18 @@ export default async function RootLayout({
   const session = await auth();
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <SessionProvider session={session}>
-          <Navbar />
-          {children}
-        </SessionProvider>
+      <body>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <SessionProvider session={session}>
+            <Navbar />
+            {children}
+          </SessionProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
