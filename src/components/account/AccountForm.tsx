@@ -7,7 +7,6 @@ import { auth } from "@/auth"
 export default async function AccountForm() {
 
   const session = await auth();
-  console.log("session h",session);
   return (
         <Card>
           <CardHeader>
@@ -17,12 +16,12 @@ export default async function AccountForm() {
           <CardContent className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="username">Username</Label>
-              <Input id="username" placeholder={"enter username"} value={"hello"}/>
+              <Input id="username" placeholder={"enter username"} defaultValue={session?.user.username}/>
             </div>
-            {/* {!session?.user?.isAdmin && <div>Hello admin not</div>} */}
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
-              <Input id="email" placeholder="Enter your email" type="email" />
+              <Input id="email" placeholder="Enter your email" type="email" 
+              defaultValue={session?.user.email}/>
             </div>
             <div className="space-y-2">
               <Label htmlFor="password">Password</Label>

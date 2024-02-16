@@ -1,24 +1,58 @@
 "use client"
-
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
+import { handleRegisterUser } from "@/actions/Register"
+export default function Component() {
+  const [Role,setRole] = useState<string>("");
 
-export default function RegisterForm() {
+  
+  const check = async (FormData: FormData) => {
+    const res = await handleRegisterUser(FormData,Role);
+
+    if(res?.error){
+      alert(res.error)
+    }
+
+    if(res.success){
+      alert("User created successfully")
+    }
+  }
   return (
-    <form className="mx-auto max-w-md space-y-8" onSubmit={undefined}>
+    <form className="mx-auto max-w-md space-y-8 sm:space-y-10" action={check}>
       <div className="space-y-2 text-center">
-        <h1 className="text-3xl font-bold">Create an Account</h1>
+        <h1 className="text-3xl font-bold sm:text-4xl">Create an Account</h1>
         <p className="text-gray-500 dark:text-gray-400">Enter your information to get started</p>
       </div>
       <div className="space-y-4">
         <div className="space-y-2">
-          <Label htmlFor="full-name">Full Name</Label>
-          <Input id="full-name" name="full-name" placeholder="John Doe" required />
+          <Label htmlFor="username">Full Name</Label>
+          <Input id="username" name="username"  placeholder="John Doe" required />
         </div>
         <div className="space-y-2">
           <Label htmlFor="email">Email</Label>
           <Input id="email" name="email"  placeholder="m@example.com" required type="email" />
+        </div>
+        <div className="space-y-2">
+          <Label htmlFor="role">Role</Label>
+          <Select onValueChange={setRole}>
+            <SelectTrigger className="w-full">
+              <SelectValue placeholder="Select role" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="student">Student</SelectItem>
+              <SelectItem value="admin">Admin</SelectItem>
+              <SelectItem value="faculty">Faculty</SelectItem>
+            </SelectContent>
+          </Select>
         </div>
         <div className="relative space-y-2">
           <div className="flex items-center">
@@ -32,9 +66,9 @@ export default function RegisterForm() {
         </div>
         <div className="relative space-y-2">
           <div className="flex items-center">
-            <Label htmlFor="confirm-password">Confirm Password</Label>
+            <Label htmlFor="confirmPassword">Confirm Password</Label>
           </div>
-          <Input id="confirm-password" name="confirm-password" required type="password" />
+          <Input id="confirmPassword" name="confirmPassword"  required type="password" />
           <Button className="absolute bottom-1 right-1 h-7 w-7" size="icon" variant="ghost">
             <EyeIcon className="h-4 w-4" />
             <span className="sr-only">Toggle password visibility</span>

@@ -7,9 +7,11 @@ import { connectToMongoDB } from "./lib/db";
 declare module "next-auth" {
   interface Session {
     user:{
+      name: string,
       id: string,
-      isAdmin: boolean,
       username: string,
+      email: string,
+      Role: string,
     }
   }
 }
@@ -28,7 +30,7 @@ export const {
         try {
           const user = await User.findOne({ email: profile?.email });
 
-          console.log(user);
+
 
           if (!user) {
             const newUser = new User({
@@ -47,10 +49,9 @@ export const {
       return true
     },
     async session({token,session}){
-
       if(token.sub && session.user){
         session.user.id = token.sub;
-        session.user.isAdmin = token.isAdmin as boolean;
+        session.user.Role = token.Role as string;
         session.user.username = token.username as string;
        
       }
@@ -65,11 +66,9 @@ export const {
 
       if(!existingUser) return token;
 
-      token.isAdmin = existingUser.isAdmin;
+      token.Role = existingUser.Role;
       token.username = existingUser.username;
       token.picture = existingUser.avatar || "";
-
-      token.isAdmin = false;
 
       return token;
     }
