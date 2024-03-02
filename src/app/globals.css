@@ -11,7 +11,7 @@
 
 @layer base {
   :root {
-    --background: #EDF0F2;
+    --background: 0,0%,96.47%;
     --foreground: 240 10% 3.9%;
     --card: 0 0% 100%;
     --card-foreground: 240 10% 3.9%;
@@ -64,5 +64,23 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+  h1 {
+    @apply text-[2em];
+  }
+  h2 {
+    @apply text-[1.5em];
+  }
+  h3 {
+    @apply text-[1.17em];
+  }
+  h4 {
+    @apply text-[1em];
+  }
+  h5 {
+    @apply text-[0.83em];
+  }
+  h6 {
+    @apply text-[0.67em];
   }
 }

@@ -7,13 +7,17 @@ const config = {
     './components/**/*.{ts,tsx,js,jsx,mdx}',
     './app/**/*.{ts,tsx,js,jsx,mdx}',
     './src/**/*.{ts,tsx,js,jsx,mdx}',
-	],
+  ],
   prefix: "",
   theme: {
     container: {
-      center: true,
-      padding: "2rem",
+      // center: true,
+      // padding: "2rem",
       screens: {
+        "sm": '480px',
+        "md": '768px',
+        "lg": '976px',
+        "xl": '1440px',
         "2xl": "1400px",
       },
     },
@@ -52,7 +56,7 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-      },
+      }, 
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",

@@ -1,9 +1,8 @@
-
-
 export const publicRoutes = [
     "/",
     "/account",
-    "/check"
+    "/check",
+    "/api/post"
 ];
 
 export const authRoutes = [

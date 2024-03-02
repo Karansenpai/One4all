@@ -1,41 +1,74 @@
-import { CardTitle, CardDescription, CardHeader, CardContent, CardFooter, Card } from "@/components/ui/card"
-import { Label } from "@/components/ui/label"
-import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
-import { auth } from "@/auth"
+"use client";
+import { Input } from "@/components/ui/input";
+import { auth } from "@/auth";
 
-export default async function AccountForm() {
-
-  const session = await auth();
+export default async function AccountForm({ session }: any) {
+  console.log(session);
   return (
-        <Card>
-          <CardHeader>
-            <CardTitle>Account Settings</CardTitle>
-            <CardDescription>Update your account information.</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="username">Username</Label>
-              <Input id="username" placeholder={"enter username"} defaultValue={session?.user.username}/>
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
-              <Input id="email" placeholder="Enter your email" type="email" 
-              defaultValue={session?.user.email}/>
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
-              <Input id="password" placeholder="Enter your password" type="password" />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="image">Profile Picture</Label>
-              <Input id="image" type="file" />
-            </div>
-          </CardContent>
-          <CardFooter>
-            <Button type="submit">Save</Button>
-          </CardFooter>
-        </Card>
-  )
-}
+    <div className="w-[40rem] absolute">
+      <h1>Account Settings</h1>
 
+      <div>
+        <h2>Basic info</h2>
+
+        <div>
+          {/* profile picture */}
+          <div className="flex gap-8">
+            <div className="text-xl">Profile Pic</div>
+            <div className="text-xl">
+              <Input
+                type="pic"
+                disabled
+                placeholder={session?.user?.img}
+                className="text-xl"
+              />
+            </div>
+          </div>
+
+          {/* Name */}
+          <div className="flex gap-8">
+            <div className="text-xl">Name</div>
+            <div className="text-xl">
+              <Input
+                type="Name"
+                disabled
+                placeholder={session?.user?.name}
+                className="text-xl"
+              />
+            </div>
+          </div>
+
+          {/* Date of Birth */}
+          <div></div>
+
+          {/* Gender */}
+          <div className = "flex gap-8">
+            <div className="text-xl">Gender</div>
+            <div className="text-xl">
+              <Input
+                type="Gender"
+                disabled
+                placeholder="Male"
+                className="text-xl"
+              />
+            </div>
+          </div>
+
+          {/* Student Id */}
+          <div className = "flex gap-8">
+            <div className="text-xl">Student ID</div>
+            <div className="text-xl">
+              <Input
+                type="id"
+                disabled
+                placeholder="IIT2022132"
+                className="text-xl"
+              />
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  );
+}
