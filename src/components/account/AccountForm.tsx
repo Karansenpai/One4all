@@ -2,8 +2,7 @@
 import { Input } from "@/components/ui/input";
 import { auth } from "@/auth";
 
-export default async function AccountForm({ session }: any) {
-  console.log(session);
+export default function AccountForm({ session }: any) {
   return (
     <div className="w-[40rem] absolute">
       <h1>Account Settings</h1>

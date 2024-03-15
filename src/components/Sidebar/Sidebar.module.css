@@ -1,0 +1,11 @@
+.container{
+    min-width: 320px;
+    background: #121E31;
+    height: calc(100vh - 77px);
+}
+
+@media (max-width: 768px) {
+   .container{
+    display: none;
+   }
+}
