@@ -9,7 +9,7 @@ export default function ProfileForm() {
           <div>
             <h1>Account Settings</h1>
 
-            <h2>Basic info</h2>
+            {/* <h2>Basic info</h2> */}
 
             
           </div>
