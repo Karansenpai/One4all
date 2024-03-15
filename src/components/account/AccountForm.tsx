@@ -8,8 +8,7 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { Button } from "@/components/ui/button"
 // import { Switch } from "@/components/ui/switch"
 
-export default async function AccountForm({ session }: any) {
-  console.log(session);
+export default function AccountForm({ session }: any) {
   return (
     <div>
       <div className="space-y-8">
