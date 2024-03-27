@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import style from "./NavbarLink.module.css";
-import Sidebar from "../Sidebar/Sidebar";
 
 const NavbarLink = () => {
   const [open, isopen] = useState(false);
