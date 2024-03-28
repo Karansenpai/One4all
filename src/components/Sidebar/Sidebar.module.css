@@ -1,10 +1,10 @@
 .container{
     min-width: 320px;
     background: #121E31;
-    height: calc(100vh - 77px);
+    height: 100%;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 800px) {
    .container{
     display: none;
    }

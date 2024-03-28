@@ -1,10 +1,31 @@
 .menuLink{
     display: none;
+    position: relative;
+    top: 1.2rem;
+
 }
 
+.sidebar{
+    position: absolute;
+    left: -38px;
+    top: 70px;
+    min-width: 300px;
+    background: #121E31;
+    height: 90dvh;
+    display: none;
+}
+
+.heading{
+    white-space: nowrap;
+    margin: 1rem;
+}
 @media (max-width: 768px){
 
     .menuLink{
+        display: block;
+    }
+
+    .sidebar{
         display: block;
     }
 }

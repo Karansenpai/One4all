@@ -64,6 +64,7 @@
   }
   body {
     @apply bg-background text-foreground;
+    @apply h-[100dvh]
   }
   h1 {
     @apply text-[2em];

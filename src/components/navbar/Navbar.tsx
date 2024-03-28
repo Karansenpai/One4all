@@ -7,12 +7,13 @@ import Image from "next/image";
 import NavbarLink from "./NavbarLink";
 
 export async function Navbar() {
-  
   const session = await auth();
-  
+
   return (
-    <div className="flex items-center justify-between px-10 py-5">
-      <NavbarLink/>
+    <div className="flex items-center justify-between px-10 py-5 h-[10%]">
+      <div>
+        <NavbarLink session = {session} />
+      </div>
       <div className="flex gap-7">
         <Navlink session={session} />
         <ModeToggle />
@@ -20,4 +21,3 @@ export async function Navbar() {
     </div>
   );
 }
-
