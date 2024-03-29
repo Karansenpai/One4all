@@ -2,6 +2,7 @@
     min-width: 320px;
     background: #121E31;
     height: 100%;
+    box-sizing: border-box;
 }
 
 @media (max-width: 800px) {

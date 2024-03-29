@@ -5,12 +5,13 @@ import Image from "next/image";
 import Link from "next/link";
 import style from "./NavbarLink.module.css";
 import Sidebar from "../Sidebar/Sidebar";
+import SideBarComp from "../Sidebar/SidebarComponent/SideBarComp";
 
 const NavbarLink = ({ session }: any) => {
   const [open, isopen] = useState(false);
 
   return (
-    <div className="flex justify-around relative">
+    <div className="flex justify-around relative ">
       <div className={style.menuLink}>
         <button
           onClick={() => {
@@ -30,7 +31,11 @@ const NavbarLink = ({ session }: any) => {
         </Link>
       </div>
 
-      {open && <div className={style.sidebar}>Sidebar</div>}
+      {open && (
+        <div className={style.sidebar}>
+          <SideBarComp/>
+        </div>
+      )}
     </div>
   );
 };

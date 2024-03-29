@@ -5,7 +5,6 @@ export interface IPost {
     postedBy: mongoose.Schema.Types.ObjectId;
     text: string;
     img: string;
-    likes: string[];
     replies: {
         userId: mongoose.Schema.Types.ObjectId;
         text: string;
@@ -33,11 +32,6 @@ const postSchema = new mongoose.Schema({
     },
     img: {
         type: String,
-    },
-    likes: {
-        type: [String],
-        ref: "User",
-        default: [],
     },
     replies: [
         {

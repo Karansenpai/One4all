@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/select"
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
-import { handleRegisterUser } from "@/actions/Register"
+import { handleRegisterUser } from "@/lib/actions/Register"
 export default function Component() {
   const [Role,setRole] = useState<string>("");
 

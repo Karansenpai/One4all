@@ -64,7 +64,9 @@
   }
   body {
     @apply bg-background text-foreground;
-    @apply h-[100dvh]
+    @apply h-[100dvh];
+    @apply w-[100dvw];
+    @apply box-border;
   }
   h1 {
     @apply text-[2em];
