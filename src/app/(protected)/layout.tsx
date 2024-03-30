@@ -6,9 +6,9 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-      <div className="flex gap-4 overflow-x-hidden h-[90%]">
-        <Sidebar />
-        {children}
-      </div>
+    <div className="flex gap-4 overflow-x-hidden h-[90%]">
+      <Sidebar />
+      {children}
+    </div>
   );
 }
