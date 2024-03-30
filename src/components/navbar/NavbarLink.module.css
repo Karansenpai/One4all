@@ -6,6 +6,7 @@
 }
 
 .sidebar{
+    z-index: 1;
     position: absolute;
     left: -38px;
     top: 70px;

@@ -62,13 +62,17 @@ const AnnouncementsCard = () => {
               </Avatar>
             </div>
             <div>
-              <Input className="h-10 w-[5em] sm:w-[32em] " type="text" placeholder="Add Comment" />
+              <Input
+                className="h-10  lg:w-[32em] "
+                type="text"
+                placeholder="Add Comment"
+              />
             </div>
           </div>
 
           <div>
             <Image
-            className="filter invert"
+              className="filter invert"
               src="/send.png"
               width={30}
               height={30}

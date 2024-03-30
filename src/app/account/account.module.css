@@ -2,15 +2,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
     width: 100%;
     padding-top: 20px;
 }
 .container2{
-    /* display: flex; */
-    /* justify-content: center; */
-    /* align-items: center; */
-    height: 100%;
     width: 100%;
     padding: 40px;
 }
@@ -20,6 +15,5 @@
     background-image: linear-gradient(to left, #553c9a, #b393d3);
     color: transparent;
     background-clip: text;
-    /* -webkit-background-clip: text; */
 }
 
