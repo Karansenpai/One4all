@@ -1,7 +1,7 @@
 .container {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: calc(100vh - 73px);
   justify-content: space-between;
   align-items: center;
 
@@ -17,8 +17,6 @@
 }
 
 .imgCnt{
-  /* height: 100px; */
-  position: relative;
   object-fit: cover;
   border-radius: 50%;
   border-style: solid;

@@ -26,7 +26,9 @@ export default async function RootLayout({
           disableTransitionOnChange
         >
           <SessionProvider session={session}>
-            <Navbar />
+            <div className="z-2">
+              <Navbar />
+            </div>
             {children}
           </SessionProvider>
         </ThemeProvider>

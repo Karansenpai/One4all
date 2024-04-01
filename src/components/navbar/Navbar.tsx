@@ -10,9 +10,9 @@ export async function Navbar() {
   const session = await auth();
 
   return (
-    <div className="flex items-center justify-between px-10 py-5 h-[10%]">
+    <div className="dark:bg-[#121E31] bg-[#FFFFFF] flex items-center justify-between px-10 py-5 h-[10%] w-[100%] fixed z-2">
       <div>
-        <NavbarLink session = {session} />
+        <NavbarLink session={session} />
       </div>
       <div className="flex gap-7">
         <Navlink session={session} />

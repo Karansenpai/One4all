@@ -12,7 +12,7 @@ const SideBarComp = () => {
         <div className={styles.imgCnt}>
           <Image
             src="/noavatar.png"
-            className={styles.avatar}
+            className={`${styles.avatar} `}
             alt=""
             width={100}
             height={100}
