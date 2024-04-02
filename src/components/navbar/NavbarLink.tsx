@@ -23,7 +23,7 @@ const NavbarLink = ({ session }: any) => {
           )}
         </button>
       </div>
-      <div className="z-2">
+      <div>
         <Link className="flex items-center gap-2" href="/">
           <div className={style.heading}>
             <h2>One for All</h2>
