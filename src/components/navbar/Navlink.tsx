@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 const Navlink = ({ session }: any) => {
   const router = useRouter();
   return (
-    <div className="flex items-center gap-4">
+    <div className="flex items-center gap-4 ">
       {!session?.user ? (
         <>
           <Button
@@ -18,9 +18,13 @@ const Navlink = ({ session }: any) => {
           >
             Sign In
           </Button>
-          <Button onClick={() => {
+          <Button
+            onClick={() => {
               router.push("/auth/register");
-            }}>Sign Up</Button>
+            }}
+          >
+            Sign Up
+          </Button>
         </>
       ) : (
         <>

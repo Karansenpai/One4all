@@ -23,7 +23,7 @@ const NavbarLink = ({ session }: any) => {
           )}
         </button>
       </div>
-      <div>
+      <div className="z-2">
         <Link className="flex items-center gap-2" href="/">
           <div className={style.heading}>
             <h2>One for All</h2>
@@ -32,8 +32,8 @@ const NavbarLink = ({ session }: any) => {
       </div>
 
       {open && (
-        <div className={style.sidebar}>
-          <SideBarComp/>
+        <div className={`${style.sidebar} dark:bg-[#121E31] bg-[#FFFFFF]`}>
+          <SideBarComp />
         </div>
       )}
     </div>

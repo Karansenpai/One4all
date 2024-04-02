@@ -3,16 +3,19 @@ import React from "react";
 import Image from "next/image";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Input } from "@/components/ui/input";
-
+import styles from "./page.module.css";
 const Announcements = () => {
   return (
     <div className=" w-full flex-row">
-      <div className="flex text-lg justify-center p-10 m-5 gap-5">
-        <div>
-          <Avatar className="w-[40px] h-[40px]">
-            <AvatarImage src="/noavatar.png" />
-            <AvatarFallback>CN</AvatarFallback>
-          </Avatar>
+      <div className="flex text-lg justify-center items-center p-10 m-5 gap-5">
+        <div className={styles.avatar}>
+          <Image
+            className={styles.img}
+            src="/noavatar.png"
+            width={80}
+            height={80}
+            alt=""
+          />
         </div>
         <div>
           <Input
@@ -20,9 +23,8 @@ const Announcements = () => {
             placeholder="Announce something"
           />
         </div>
-        <div>
+        <div className="bg-[#FFFFFF] p-[9px] rounded-full">
           <Image
-            className="filter invert"
             src="/send.png"
             width={30}
             height={30}
