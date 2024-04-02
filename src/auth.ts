@@ -65,7 +65,7 @@ export const {
       const existingUser = await User.findOne({email : token.email});
 
       if(!existingUser) return token;
-
+      token.sub = existingUser._id.toString();
       token.Role = existingUser.Role;
       token.username = existingUser.username;
       token.picture = existingUser.avatar || "";

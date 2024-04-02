@@ -55,6 +55,7 @@ const AnnouncementsCard = () => {
             assumenda nemo, beatae debitis, quas cum dolores quisquam dicta
             corrupti hic repellat. Similique, nemo?
           </p>
+
         </div>
 
         <div className="m-3 p-3 px-[20px] w-[100%]">

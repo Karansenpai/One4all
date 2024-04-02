@@ -67,6 +67,7 @@
     @apply h-[100dvh];
     @apply w-[100dvw];
     @apply box-border;
+    @apply overflow-x-hidden;
   }
   h1 {
     @apply text-[2em];

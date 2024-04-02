@@ -3,7 +3,7 @@
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { handleGithubLogin, loginUser } from "@/lib/actions/login";
+import { handleGithubLogin, loginUser } from "@/lib/auth_actions/login";
 
 export default function LoginForm() {
   return (

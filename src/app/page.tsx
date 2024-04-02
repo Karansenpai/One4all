@@ -1,5 +1,5 @@
 import Sidebar from "@/components/Sidebar/Sidebar";
-import { handleGithubLogin } from "@/lib/actions/login";
+import { handleGithubLogin } from "@/lib/auth_actions/login";
 import Image from "next/image";
 
 export default function Home() {

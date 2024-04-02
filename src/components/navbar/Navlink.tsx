@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Button } from "../ui/button";
-import { logout } from "@/lib/actions/logout";
+import { logout } from "@/lib/auth_actions/logout";
 import { useRouter } from "next/navigation";
 
 const Navlink = ({ session }: any) => {
