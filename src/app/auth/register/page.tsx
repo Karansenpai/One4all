@@ -1,18 +1,9 @@
 import RegisterForm from "@/components/auth/RegisterForm";
 
-
-
-
 const RegisterPage = () => {
   return (
-    <div style={{
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      height: '80vh',
-      position: 'relative',
-    }}>
-      <RegisterForm/>
+    <div className="flex justify-center items-center h-[90vh] w-[100%] static">
+      <RegisterForm />
     </div>
   );
 };

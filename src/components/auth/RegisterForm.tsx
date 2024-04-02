@@ -1,45 +1,60 @@
-"use client"
-import { Label } from "@/components/ui/label"
-import { Input } from "@/components/ui/input"
+"use client";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { handleRegisterUser } from "@/lib/auth_actions/Register"
+} from "@/components/ui/select";
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { handleRegisterUser } from "@/lib/auth_actions/Register";
 export default function Component() {
-  const [Role,setRole] = useState<string>("");
+  const [Role, setRole] = useState<string>("");
 
-  
   const check = async (FormData: FormData) => {
-    const res = await handleRegisterUser(FormData,Role);
+    const res = await handleRegisterUser(FormData, Role);
 
-    if(res?.error){
-      alert(res.error)
+    if (res?.error) {
+      alert(res.error);
     }
 
-    if(res.success){
-      alert("User created successfully")
+    if (res.success) {
+      alert("User created successfully");
     }
-  }
+  };
   return (
-    <form className="mx-auto max-w-md space-y-8 sm:space-y-10" action={check}>
+    <form
+      className="mx-auto mt-[200px] max-w-md space-y-8 sm:space-y-10"
+      action={check}
+    >
       <div className="space-y-2 text-center">
         <h1 className="text-3xl font-bold sm:text-4xl">Create an Account</h1>
-        <p className="text-gray-500 dark:text-gray-400">Enter your information to get started</p>
+        <p className="text-gray-500 dark:text-gray-400">
+          Enter your information to get started
+        </p>
       </div>
       <div className="space-y-4">
         <div className="space-y-2">
           <Label htmlFor="username">Full Name</Label>
-          <Input id="username" name="username"  placeholder="John Doe" required />
+          <Input
+            id="username"
+            name="username"
+            placeholder="John Doe"
+            required
+          />
         </div>
         <div className="space-y-2">
           <Label htmlFor="email">Email</Label>
-          <Input id="email" name="email"  placeholder="m@example.com" required type="email" />
+          <Input
+            id="email"
+            name="email"
+            placeholder="m@example.com"
+            required
+            type="email"
+          />
         </div>
         <div className="space-y-2">
           <Label htmlFor="role">Role</Label>
@@ -58,8 +73,12 @@ export default function Component() {
           <div className="flex items-center">
             <Label htmlFor="password">Password</Label>
           </div>
-          <Input id="password" name="password"  required type="password" />
-          <Button className="absolute bottom-1 right-1 h-7 w-7" size="icon" variant="ghost">
+          <Input id="password" name="password" required type="password" />
+          <Button
+            className="absolute bottom-1 right-1 h-7 w-7"
+            size="icon"
+            variant="ghost"
+          >
             <EyeIcon className="h-4 w-4" />
             <span className="sr-only">Toggle password visibility</span>
           </Button>
@@ -68,8 +87,17 @@ export default function Component() {
           <div className="flex items-center">
             <Label htmlFor="confirmPassword">Confirm Password</Label>
           </div>
-          <Input id="confirmPassword" name="confirmPassword"  required type="password" />
-          <Button className="absolute bottom-1 right-1 h-7 w-7" size="icon" variant="ghost">
+          <Input
+            id="confirmPassword"
+            name="confirmPassword"
+            required
+            type="password"
+          />
+          <Button
+            className="absolute bottom-1 right-1 h-7 w-7"
+            size="icon"
+            variant="ghost"
+          >
             <EyeIcon className="h-4 w-4" />
             <span className="sr-only">Toggle password visibility</span>
           </Button>
@@ -79,10 +107,10 @@ export default function Component() {
         </Button>
       </div>
     </form>
-  )
+  );
 }
 
-function EyeIcon(props:any) {
+function EyeIcon(props: any) {
   return (
     <svg
       {...props}
@@ -99,5 +127,5 @@ function EyeIcon(props:any) {
       <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
       <circle cx="12" cy="12" r="3" />
     </svg>
-  )
+  );
 }
