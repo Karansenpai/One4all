@@ -5,6 +5,7 @@ export interface IUser {
 	email: string;
 	avatar?: string;
     password?: string;
+    section?: string;
     userId?: string;
     Role?: string,
 }
@@ -32,6 +33,10 @@ const userSchema = new mongoose.Schema<IUserDocument>(
         },
         password: {
             type: String,
+        },
+        section: {
+            type: String,
+            default: "A",
         },
         userId: {
             type: String,

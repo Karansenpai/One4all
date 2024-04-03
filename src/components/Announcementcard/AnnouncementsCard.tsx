@@ -8,11 +8,14 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Image from "next/image";
 import styles from "./acc.module.css";
+import { deletePost } from "@/lib/post_actions/deletePost";
+import { toast, useToast } from "../ui/use-toast";
 
-const AnnouncementsCard = () => {
+const AnnouncementsCard = ({ post }: any) => {
+
+  const { toast } = useToast();
   return (
     <div className="w-[100%] min-h-[35%] flex justify-center text-lg my-5 p-2 rounded-lg">
       <div className="w-[70%] h-full gap-2 rounded-lg bg-slate-700 p-6">
@@ -21,15 +24,15 @@ const AnnouncementsCard = () => {
             <div className={styles.avatar}>
               <Image
                 className={styles.img}
-                src="/noavatar.png"
+                src={post.profilePic ? post.profilePic : "/noavatar.png"}
                 width={50}
                 height={50}
                 alt=""
               />
             </div>
             <div className="flex-row px-7 ">
-              <div>John Doe</div>
-              <div>Date</div>
+              <div>{post.Name}</div>
+              <div>{post.updatedAt.toDateString()}</div>
             </div>
           </div>
           <div className="self-end">
@@ -41,22 +44,28 @@ const AnnouncementsCard = () => {
                 <DropdownMenuLabel>Options</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>Edit Post</DropdownMenuItem>
-                <DropdownMenuItem>Delete Post</DropdownMenuItem>
+                <DropdownMenuItem onClick={async()=>{
+                  await deletePost(post._id);
+                  toast({
+                    variant: "destructive",
+                    title: "Deleted!",
+                    description: "Post Deteted Succesfully!",
+                    duration: 5000,
+                  });
+                }}>Delete Post</DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           </div>
         </div>
         <div className="m-3 p-3 text-justify">
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae
-            quae, repellat rem eum, obcaecati temporibus eos a saepe nihil earum
-            distinctio sunt maxime quos placeat deleniti debitis necessitatibus
-            nam iste! Aliquam consequuntur facere quia dolorem dignissimos
-            assumenda nemo, beatae debitis, quas cum dolores quisquam dicta
-            corrupti hic repellat. Similique, nemo?
-          </p>
-
+          <p>{post.text}</p>
         </div>
+
+        {post.img && (
+          <div className="m-3 p-3">
+            <Image src={post.img} width={500} height={500} alt="" />{" "}
+          </div>
+        )}
 
         <div className="m-3 p-3 px-[20px] w-[100%]">
           <div className="flex justify-between gap-3 items-center ">

@@ -2,6 +2,8 @@ import mongoose, { Model, Document } from "mongoose";
 
 
 export interface IPost {
+    Name: string;
+    profilePic: string;
     postedBy: mongoose.Schema.Types.ObjectId;
     text: string;
     img: string;
@@ -20,6 +22,15 @@ export interface IPostDocument extends IPost, Document {
 }
 
 const postSchema = new mongoose.Schema({
+    Name: {
+        type: String,
+        required: true,
+        maxLength: 50,
+    },
+    profilePic: {
+        type: String,
+        default: ""
+    },
     postedBy: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
@@ -33,7 +44,7 @@ const postSchema = new mongoose.Schema({
     img: {
         type: String,
     },
-    section:{
+    section: {
         type: String,
     },
     replies: [

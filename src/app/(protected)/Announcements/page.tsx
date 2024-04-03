@@ -1,9 +1,10 @@
 "use client";
 
 import AnnouncementsCard from "@/components/Announcementcard/AnnouncementsCard";
-import React from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import { useRef } from "react";
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -19,29 +20,60 @@ import { Label } from "@/components/ui/label";
 import styles from "./page.module.css";
 import { useSession } from "next-auth/react";
 import { createPost } from "@/lib/post_actions/createPost";
-import { Button } from "@/components/ui/button";
+import { useToast } from "@/components/ui/use-toast";
+import { IPostDocument } from "@/models/postModel";
+import { getAllPost } from "@/lib/post_actions/getPost";
+
+
 const Announcements = () => {
+  const { toast } = useToast();
   const { data: session, status } = useSession();
-
-
   const [input, setInput] = React.useState("");
   const [selected, setSelected] = React.useState("All");
   const { handleImageChange, imgUrl, setImgUrl } = usePreviewImage();
+  const [posts, setPosts] = React.useState<IPostDocument[]>([]);
+
   const imageRef = useRef<HTMLInputElement>(null);
 
   const handleCreatePost = async () => {
     const formData = new FormData();
+
+    formData.append("Name", session?.user?.name as string);
+    formData.append("profilePic", session?.user?.picture as string);
     formData.append("Content", input);
-    formData.append("Image", imgUrl as string);
+    formData.append("Image", (imgUrl as string) || "");
     formData.append("selected", selected);
     formData.append("userId", session?.user?.id as string);
-    const response = await createPost(formData);
-    if(response){
+
+    if (input.length === 0) {
       toast({
-        description: "Your message has been sent.",
-      })
+        variant: "destructive",
+        title: "Alert!",
+        description: "Text cannot be empty!",
+        duration: 5000,
+      });
+      return;
+    }
+    const response = await createPost(formData);
+
+    if ((response as string).length > 0) {
+      toast({
+        title: "Alert!",
+        description: "Post created successfully!",
+        duration: 5000,
+      });
     }
   };
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      const posts = await getAllPost();
+      setPosts(posts as IPostDocument[]);
+      
+      console.log(posts);
+    };
+    fetchPosts();
+  }, []);
 
   return (
     <div className=" w-full flex-row">
@@ -83,9 +115,7 @@ const Announcements = () => {
           </div>
           <div className="flex gap-[10px] p-[9px] rounded-full">
             <DropdownMenu>
-              <DropdownMenuTrigger>
-                <Button>Send To {selected}</Button>
-              </DropdownMenuTrigger>
+              <DropdownMenuTrigger>Send To {selected}</DropdownMenuTrigger>
               <DropdownMenuContent>
                 <DropdownMenuLabel>Options</DropdownMenuLabel>
                 <DropdownMenuSeparator />
@@ -137,10 +167,13 @@ const Announcements = () => {
         </div>
       </div>
       <div>
-        <AnnouncementsCard />
-        <AnnouncementsCard />
-        <AnnouncementsCard />
-        <AnnouncementsCard />
+        {posts.map((post: IPostDocument, index: number) => {
+          return (
+            <div>
+              {(post?.section === session?.user?.section || post?.section === "All") && <AnnouncementsCard post={post} />}
+            </div>
+          );
+        })}
       </div>
     </div>
   );

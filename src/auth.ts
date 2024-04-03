@@ -12,6 +12,8 @@ declare module "next-auth" {
       username: string,
       email: string,
       Role: string,
+      picture: string,
+      section: string,
     }
   }
 }
@@ -29,9 +31,6 @@ export const {
         await connectToMongoDB();
         try {
           const user = await User.findOne({ email: profile?.email });
-
-
-
           if (!user) {
             const newUser = new User({
               username: profile?.login,
@@ -53,6 +52,8 @@ export const {
         session.user.id = token.sub;
         session.user.Role = token.Role as string;
         session.user.username = token.username as string;
+        session.user.picture = token.picture as string;
+        session.user.section = token.section as string;
        
       }
 
@@ -69,6 +70,7 @@ export const {
       token.Role = existingUser.Role;
       token.username = existingUser.username;
       token.picture = existingUser.avatar || "";
+      token.section = existingUser.section || "A";
 
       return token;
     }
