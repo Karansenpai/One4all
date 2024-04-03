@@ -5,6 +5,7 @@ export interface IPost {
     postedBy: mongoose.Schema.Types.ObjectId;
     text: string;
     img: string;
+    section: string;
     replies: {
         userId: mongoose.Schema.Types.ObjectId;
         text: string;
@@ -18,7 +19,6 @@ export interface IPostDocument extends IPost, Document {
     updatedAt: Date;
 }
 
-
 const postSchema = new mongoose.Schema({
     postedBy: {
         type: mongoose.Schema.Types.ObjectId,
@@ -31,6 +31,9 @@ const postSchema = new mongoose.Schema({
         maxLength: 500,
     },
     img: {
+        type: String,
+    },
+    section:{
         type: String,
     },
     replies: [

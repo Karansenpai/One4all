@@ -12,6 +12,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+
 import usePreviewImage from "@/hooks/usePreviewimage";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -22,7 +23,6 @@ import { Button } from "@/components/ui/button";
 const Announcements = () => {
   const { data: session, status } = useSession();
 
-  console.log(session);
 
   const [input, setInput] = React.useState("");
   const [selected, setSelected] = React.useState("All");
@@ -31,12 +31,16 @@ const Announcements = () => {
 
   const handleCreatePost = async () => {
     const formData = new FormData();
-    formData.append("Author", session?.user?.name || "");
-    formData.append("Date", new Date().toDateString());
     formData.append("Content", input);
     formData.append("Image", imgUrl as string);
     formData.append("selected", selected);
-    await createPost(formData);
+    formData.append("userId", session?.user?.id as string);
+    const response = await createPost(formData);
+    if(response){
+      toast({
+        description: "Your message has been sent.",
+      })
+    }
   };
 
   return (
