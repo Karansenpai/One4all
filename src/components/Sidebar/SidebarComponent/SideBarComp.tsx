@@ -2,13 +2,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { Button } from "../../ui/button";
 import styles from "./sidebar.module.css";
-import { redirect } from "next/navigation";
 import { useSession } from "next-auth/react";
-import { Session } from "inspector";
+
 const SideBarComp = () => {
   const { data: session, status } = useSession();
+  console.log(session);
   return (
     <div className={styles.container}>
       <div className={styles.user}>
@@ -25,7 +24,7 @@ const SideBarComp = () => {
           <h2>{session?.user?.name}</h2>
           <h3>{session?.user?.Role}</h3>
           {session?.user?.Role === "Student" && <h3>Sec {session?.user?.section}</h3>}
-          <p>Btech IT</p>
+          <h3>{session?.user?.Department}</h3>
         </div>
       </div>
       <div className={styles.sideitems}>

@@ -1,22 +1,9 @@
-import { auth, signOut } from "@/auth";
+import ProfileBox from "@/components/ProfileBox/ProfileBox";
 import React from "react";
 
-const Settings = async () => {
-
-  const session = await auth();
-  
+const Settings =  async() => {
   return (
-    <div>
-      {JSON.stringify(session)}
-      <form
-        action={async () => {
-          "use server";
-          await signOut();
-        }}
-      >
-        <button type="submit">Sign Out</button>
-      </form>
-    </div>
+        <ProfileBox/>
   );
 };
 
