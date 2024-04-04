@@ -9,7 +9,6 @@ import { useSession } from "next-auth/react";
 import { Session } from "inspector";
 const SideBarComp = () => {
   const { data: session, status } = useSession();
-  console.log(session);
   return (
     <div className={styles.container}>
       <div className={styles.user}>

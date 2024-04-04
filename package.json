@@ -9,6 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@chakra-ui/react": "^2.8.2",
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
     "@hookform/resolvers": "^3.3.4",
     "@mui/icons-material": "^5.15.14",
     "@mui/material": "^5.15.14",
@@ -26,6 +29,7 @@
     "class-variance-authority": "^0.7.0",
     "cloudinary": "^2.1.0",
     "clsx": "^2.1.0",
+    "framer-motion": "^11.0.24",
     "mongoose": "^8.1.2",
     "next": "14.1.0",
     "next-auth": "^5.0.0-beta.4",

@@ -4,6 +4,9 @@ import { signIn } from "@/auth";
 import { DEFAULT_LOGIN_REDIRECT } from "@/route";
 import { AuthError } from "next-auth";
 
+export const handleGoogleLogin = async () =>{
+    await signIn("google");
+}
 
 
 export const handleGithubLogin = async () =>{

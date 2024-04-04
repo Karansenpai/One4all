@@ -8,6 +8,12 @@ export interface IUser {
     section?: string;
     userId?: string;
     Role?: string,
+    Branch?: string,
+    Year?: string,
+    Semester?: string,
+    Department?: string,
+    RollNo?: string,
+    Subjects?: string[],
 }
 
 export interface IUserDocument extends IUser,Document {
@@ -40,11 +46,37 @@ const userSchema = new mongoose.Schema<IUserDocument>(
         },
         userId: {
             type: String,
+            default: "",
         },
         Role: {
             type: String,
             default: "Student",
-        }  
+        },
+        Branch: {
+            type: String,
+            default: "",
+        },
+        Year: {
+            type: String,
+            default: "",
+        },
+        Semester: {
+            type: String,
+            default: "",
+        },
+        Department: {
+            type: String,
+            default: "",
+        },
+        RollNo: {
+            type: String,
+            default: "",
+        },
+        Subjects: {
+            type: [String],
+            default: [],
+        },
+
     },
     { timestamps: true }
 

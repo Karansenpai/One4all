@@ -12,9 +12,10 @@ import Image from "next/image";
 import styles from "./acc.module.css";
 import { deletePost } from "@/lib/post_actions/deletePost";
 import { toast, useToast } from "../ui/use-toast";
+import { Button } from "../ui/button";
 
 const AnnouncementsCard = ({ post }: any) => {
-
+  const [open, setopen] = React.useState(false);
   const { toast } = useToast();
   return (
     <div className="w-[100%] min-h-[35%] flex justify-center text-lg my-5 p-2 rounded-lg">
@@ -44,15 +45,19 @@ const AnnouncementsCard = ({ post }: any) => {
                 <DropdownMenuLabel>Options</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>Edit Post</DropdownMenuItem>
-                <DropdownMenuItem onClick={async()=>{
-                  await deletePost(post._id);
-                  toast({
-                    variant: "destructive",
-                    title: "Deleted!",
-                    description: "Post Deteted Succesfully!",
-                    duration: 5000,
-                  });
-                }}>Delete Post</DropdownMenuItem>
+                <DropdownMenuItem
+                  onClick={async () => {
+                    await deletePost(post._id);
+                    toast({
+                      variant: "destructive",
+                      title: "Deleted!",
+                      description: "Post Deteted Succesfully!",
+                      duration: 5000,
+                    });
+                  }}
+                >
+                  Delete Post
+                </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           </div>
@@ -63,7 +68,16 @@ const AnnouncementsCard = ({ post }: any) => {
 
         {post.img && (
           <div className="m-3 p-3">
-            <Image src={post.img} width={500} height={500} alt="" />{" "}
+              <Image onClick = {()=>{
+                setopen(!open)
+              }} src={post.img} width={500} height={500} alt="" />
+            {open && (
+              <div className = "fixed top-[100px] left-[250px] ">
+                <Image onClick={()=>{
+                  setopen(!open)
+                }} src={post.img} width={1400} height={1360} alt="" />
+              </div>
+            )}
           </div>
         )}
 
