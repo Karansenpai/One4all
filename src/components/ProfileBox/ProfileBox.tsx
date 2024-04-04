@@ -22,7 +22,6 @@ const ProfileBox = () => {
       setStudentId(session.user.RollNo);
       setDepartment(session.user.Department);
       setSection(session.user.section);
-
     }
   }, [session]);
 
@@ -36,7 +35,7 @@ const ProfileBox = () => {
   const handleSaveProfile = async() => {
     setIsDisabled(true);
     const email = session?.user.email;
-    const response = await updateProfile(email as string,studentId as string,department as string,section as string);
+    const response = await updateProfile(email as string,studentId as string,department as string,section as string, imgUrl as string);
     if((response as string).length > 0){
       alert(response);
     }

@@ -2,8 +2,8 @@
 
 import User from "@/models/userModel";
 import { connectToMongoDB } from "../db";
-
-export const updateProfile = async(email:string,studentId:string,department:string,section:string) => {
+import {v2 as cloudinary} from "cloudinary";
+export const updateProfile = async(email:string,studentId:string,department:string,section:string, imgUrl:string) => {
 
     try{
         await connectToMongoDB();
@@ -11,9 +11,17 @@ export const updateProfile = async(email:string,studentId:string,department:stri
         if(!user){
             return "User not found";
         }
+        if(imgUrl.length > 0){
+            if(user.avatar){
+                await cloudinary.uploader.destroy(user.avatar.split("/").pop()?.split(".")[0] || "");
+            }
+            const uploadedResponse = await cloudinary.uploader.upload(imgUrl);
+            imgUrl = uploadedResponse.secure_url;
+        }
         user.RollNo = studentId;
         user.Department = department;
         user.section = section;
+        user.avatar = imgUrl;
         await user.save();
 
         return "user updated succesfully";
