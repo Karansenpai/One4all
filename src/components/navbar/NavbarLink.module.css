@@ -6,11 +6,8 @@
 }
 
 .sidebar{
-    z-index: 1;
-    position: fixed;
-    top: 70px;
-    min-width: 300px;
     display: none;
+    position: relative;
 }
 
 .heading{
@@ -24,6 +21,19 @@
     }
 
     .sidebar{
-        display: block;
+        z-index: 1;
+        position: absolute;
+        top: 125%;
+        /* right: 0; */
+        width: 300px;
+        min-height: calc(100vh - 130%);
+        /* background-color: var(--bg); */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        overflow: hidden;
+        transition:height 0.5s ease-in-out;
     }
 }
