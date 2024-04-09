@@ -6,7 +6,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="flex gap-4 overflow-x-hidden pt-[73px] ">
+    <div className="flex gap-4 overflow-x-hidden ">
       <Sidebar />
       {children}
     </div>

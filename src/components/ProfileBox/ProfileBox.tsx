@@ -8,6 +8,7 @@ import { Label } from "../ui/label";
 import usePreviewImage from "@/hooks/usePreviewimage";
 import { useSession } from "next-auth/react";
 import { updateProfile } from "@/lib/profile_action/updateProfile";
+import styles from "./profile.module.css";
 
 const ProfileBox = () => {
   const { data: session, status } = useSession();
@@ -15,7 +16,6 @@ const ProfileBox = () => {
   const [studentId, setStudentId] = useState(session?.user?.RollNo);
   const [department, setDepartment] = useState(session?.user?.Department);
   const [section, setSection] = useState(session?.user?.section);
-
 
   useEffect(() => {
     if (session?.user?.email) {
@@ -32,14 +32,19 @@ const ProfileBox = () => {
     setSection("");
   };
 
-  const handleSaveProfile = async() => {
+  const handleSaveProfile = async () => {
     setIsDisabled(true);
     const email = session?.user.email;
-    const response = await updateProfile(email as string,studentId as string,department as string,section as string, imgUrl as string);
-    if((response as string).length > 0){
+    const response = await updateProfile(
+      email as string,
+      studentId as string,
+      department as string,
+      section as string,
+      imgUrl as string
+    );
+    if ((response as string).length > 0) {
       alert(response);
     }
-
   };
   const { handleImageChange, imgUrl, setImgUrl } = usePreviewImage();
   const imageRef = useRef<HTMLInputElement>(null);
@@ -49,9 +54,15 @@ const ProfileBox = () => {
       <div className=" my-[5rem] flex-col ">
         <div className="flex gap-10 ">
           {/* left */}
-          <div className="flex-col justify-center">
-            <div className="m-5 p-5">
-              <Image alt="" src="/noavatar.png" width={200} height={200} />
+          <div className="flex-col gap-10 items-center justify-center">
+            <div className={`${styles.imgCnt}`}>
+              <Image
+                alt=""
+                src="/noavatar.png"
+                width={200}
+                height={200}
+                className={styles.img}
+              />
             </div>
 
             <div className="flex  gap-1">
@@ -96,7 +107,7 @@ const ProfileBox = () => {
                 <Input
                   disabled={isDisabled}
                   value={studentId}
-                  onChange={(e:any) => setStudentId(e.target.value)}
+                  onChange={(e: any) => setStudentId(e.target.value)}
                   type="text"
                   placeholder="IIT2022132"
                 />
@@ -106,29 +117,35 @@ const ProfileBox = () => {
             <div className="m-5 p-5">
               <div className="my-2">Department</div>
               <div>
-                <Input 
-                disabled={isDisabled}
-                value={department}
-                onChange={(e:any) => setDepartment(e.target.value)}
-                type="text" placeholder="IT" />
+                <Input
+                  disabled={isDisabled}
+                  value={department}
+                  onChange={(e: any) => setDepartment(e.target.value)}
+                  type="text"
+                  placeholder="IT"
+                />
               </div>
             </div>
 
             <div className="m-5 p-5">
               <div className="my-2">Section</div>
               <div>
-                <Input 
-                disabled = {isDisabled}
-                value={section}
-                onChange={(e:any) => setSection(e.target.value)}
-                type="text" placeholder="B" />
+                <Input
+                  disabled={isDisabled}
+                  value={section}
+                  onChange={(e: any) => setSection(e.target.value)}
+                  type="text"
+                  placeholder="B"
+                />
               </div>
             </div>
           </div>
         </div>
-        <div className="flex text-center relative left-20">
-          {isDisabled && <Button onClick = {handleUpdatePofile} >Update Profile</Button>}
-          {!isDisabled && <Button onClick = {handleSaveProfile}>Save</Button>}
+        <div className="flex text-center relative left-20 z-0">
+          {isDisabled && (
+            <Button onClick={handleUpdatePofile}>Update Profile</Button>
+          )}
+          {!isDisabled && <Button onClick={handleSaveProfile}>Save</Button>}
         </div>
       </div>
     </div>

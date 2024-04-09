@@ -1,7 +1,7 @@
 .container {
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 73px);
+  height: calc(100vh);
   justify-content: space-between;
   align-items: center;
 
