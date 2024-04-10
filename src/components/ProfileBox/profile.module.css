@@ -1,13 +1,24 @@
 .imgCnt{
-  width: fit-content;
-  object-fit: cover;
+  position: relative;
+  object-fit: contain;
   border-radius: 50%;
+  width: 200px;
+  height: 200px;
   border-style: solid;
   border-color: rgb(147, 51, 234);
   border-width: 5px;
 }
 
 .img{
-  /* width: 100%; */
+
   border-radius: 50%;
+}
+
+@media (max-width: 800px)  {
+  .container{
+    position: relative;
+    top: 100px;
+    flex-direction: column;
+  }
+
 }

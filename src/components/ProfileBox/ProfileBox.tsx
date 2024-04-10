@@ -52,17 +52,11 @@ const ProfileBox = () => {
   return (
     <div className="w-full h-[90dvh] flex justify-center ">
       <div className=" my-[5rem] flex-col ">
-        <div className="flex gap-10 ">
+        <div className={`flex justify-center ${styles.container} gap-10 `}>
           {/* left */}
-          <div className="flex-col gap-10 items-center justify-center">
+          <div className="flex flex-col gap-10 items-center justify-center">
             <div className={`${styles.imgCnt}`}>
-              <Image
-                alt=""
-                src="/noavatar.png"
-                width={200}
-                height={200}
-                className={styles.img}
-              />
+              <Image alt="" src="/noavatar.png" fill className={styles.img} />
             </div>
 
             <div className="flex  gap-1">
@@ -141,7 +135,7 @@ const ProfileBox = () => {
             </div>
           </div>
         </div>
-        <div className="flex text-center relative left-20 z-0">
+        <div className="flex justify-center text-center relative left-20 z-0">
           {isDisabled && (
             <Button onClick={handleUpdatePofile}>Update Profile</Button>
           )}
