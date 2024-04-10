@@ -23,7 +23,9 @@ const SideBarComp = () => {
         <div className={styles.detail}>
           <h2>{session?.user?.name}</h2>
           <h3>{session?.user?.Role}</h3>
-          {session?.user?.Role === "Student" && <h3>Sec {session?.user?.section}</h3>}
+          {session?.user?.Role === "Student" && (
+            <h3>Sec {session?.user?.section}</h3>
+          )}
           <h3>{session?.user?.Department}</h3>
         </div>
       </div>
@@ -43,9 +45,9 @@ const SideBarComp = () => {
         </Link>
         <Link
           className="text-white bg-purple-700 hover:bg-purple-800 focus:outline-none focus:ring-4 focus:ring-purple-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900"
-          href="/settings"
+          href="/studymaterial"
         >
-          Announcements
+          Study Material
         </Link>
       </div>
     </div>

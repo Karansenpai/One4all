@@ -1,0 +1,30 @@
+.container{
+  /* width: 100%; */
+  margin-right: 100px;
+  display: flex;
+  justify-content: space-between;
+  border:solid gray;
+  border-radius: 5px;
+  padding:10px;
+
+}
+
+.title{
+  
+  /* flex:2; */
+}
+.imgCnt{
+  /* flex :1; */
+  width: 50px;
+  position: relative;
+}
+.img{
+  /* top:-4px; */
+  object-fit: contain;
+}
+
+@media (max-width:1200px){
+  .container{
+    margin-right: 0px;
+  }
+}
