@@ -10,7 +10,7 @@ export async function Navbar() {
   const session = await auth();
 
   return (
-    <div className="dark:bg-[#121E31] bg-[#FFFFFF] flex items-center justify-between px-10 py-5 h-[10%] w-[100%] fixed">
+    <div className="dark:bg-[#121E31] bg-[#FFFFFF] flex items-center justify-between px-10 py-5 h-[10%] w-[100%] ">
       <div>
         <NavbarLink session={session} />
       </div>

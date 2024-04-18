@@ -8,6 +8,7 @@ import { Label } from "../ui/label";
 import usePreviewImage from "@/hooks/usePreviewimage";
 import { useSession } from "next-auth/react";
 import { updateProfile } from "@/lib/profile_action/updateProfile";
+import styles from "./profile.module.css";
 
 const ProfileBox = () => {
   const { data: session, status } = useSession();
@@ -33,15 +34,13 @@ const ProfileBox = () => {
 
   const handleSaveProfile = async () => {
     setIsDisabled(true);
-    const email = session?.user?.email;
-
-    console.log(email, studentId, department, section, imgUrl);
+    const email = session?.user.email;
     const response = await updateProfile(
       email as string,
       studentId as string,
       department as string,
       section as string,
-      imgUrl?.toString() || ""
+      imgUrl as string
     );
     if ((response as string).length > 0) {
       alert(response);
@@ -55,11 +54,11 @@ const ProfileBox = () => {
   return (
     <div className="w-full h-[90dvh] flex justify-center ">
       <div className=" my-[5rem] flex-col ">
-        <div className="flex gap-10 ">
+        <div className={`flex justify-center ${styles.container} gap-10 `}>
           {/* left */}
-          <div className="flex-col justify-center">
-            <div className="m-5 p-5">
-              <Image alt="" src="/noavatar.png" width={200} height={200} />
+          <div className="flex flex-col gap-10 items-center justify-center">
+            <div className={`${styles.imgCnt}`}>
+              <Image alt="" src="/noavatar.png" fill className={styles.img} />
             </div>
 
             <div className="flex  gap-1">
@@ -138,7 +137,7 @@ const ProfileBox = () => {
             </div>) }
           </div>
         </div>
-        <div className="flex text-center relative left-20">
+        <div className="flex justify-center text-center relative left-20 z-0">
           {isDisabled && (
             <Button onClick={handleUpdatePofile}>Update Profile</Button>
           )}

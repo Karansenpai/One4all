@@ -1,0 +1,9 @@
+.container{
+  /* background-color: ; */
+  padding: 20px;
+  color: black;
+  display: flex;
+  margin: 0;
+
+  /* height: 10; */
+}
