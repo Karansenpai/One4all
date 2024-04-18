@@ -16,7 +16,6 @@ const ProfileBox = () => {
   const [department, setDepartment] = useState(session?.user?.Department);
   const [section, setSection] = useState(session?.user?.section);
 
-
   useEffect(() => {
     if (session?.user?.email) {
       setStudentId(session.user.RollNo);
@@ -32,17 +31,26 @@ const ProfileBox = () => {
     setSection("");
   };
 
-  const handleSaveProfile = async() => {
+  const handleSaveProfile = async () => {
     setIsDisabled(true);
-    const email = session?.user.email;
-    const response = await updateProfile(email as string,studentId as string,department as string,section as string, imgUrl as string);
-    if((response as string).length > 0){
+    const email = session?.user?.email;
+
+    console.log(email, studentId, department, section, imgUrl);
+    const response = await updateProfile(
+      email as string,
+      studentId as string,
+      department as string,
+      section as string,
+      imgUrl?.toString() || ""
+    );
+    if ((response as string).length > 0) {
       alert(response);
     }
-
   };
   const { handleImageChange, imgUrl, setImgUrl } = usePreviewImage();
   const imageRef = useRef<HTMLInputElement>(null);
+
+  console.log(session);
 
   return (
     <div className="w-full h-[90dvh] flex justify-center ">
@@ -68,11 +76,11 @@ const ProfileBox = () => {
               />
             </div>
             <div className="flex-col m-5 p-10 gap-10">
-              <h2>John Doe</h2>
+              <h2>{session?.user?.username}</h2>
 
-              <h2>IIT2022132</h2>
+              <h2>{session?.user?.Branch}</h2>
 
-              <h2>Sem 4</h2>
+              {session?.user?.Semester && <h2>Sem {session?.user?.Semester}</h2>}
             </div>
           </div>
 
@@ -91,12 +99,12 @@ const ProfileBox = () => {
             </div>
 
             <div className="m-5 p-5">
-              <div className="my-2">Student Id</div>
+              <div className="my-2">User Id</div>
               <div>
                 <Input
                   disabled={isDisabled}
                   value={studentId}
-                  onChange={(e:any) => setStudentId(e.target.value)}
+                  onChange={(e: any) => setStudentId(e.target.value)}
                   type="text"
                   placeholder="IIT2022132"
                 />
@@ -106,29 +114,35 @@ const ProfileBox = () => {
             <div className="m-5 p-5">
               <div className="my-2">Department</div>
               <div>
-                <Input 
-                disabled={isDisabled}
-                value={department}
-                onChange={(e:any) => setDepartment(e.target.value)}
-                type="text" placeholder="IT" />
+                <Input
+                  disabled={isDisabled}
+                  value={department}
+                  onChange={(e: any) => setDepartment(e.target.value)}
+                  type="text"
+                  placeholder="IT"
+                />
               </div>
             </div>
 
-            <div className="m-5 p-5">
+            {session?.user?.Role !== 'faculty' && (<div className="m-5 p-5">
               <div className="my-2">Section</div>
               <div>
-                <Input 
-                disabled = {isDisabled}
-                value={section}
-                onChange={(e:any) => setSection(e.target.value)}
-                type="text" placeholder="B" />
+                <Input
+                  disabled={isDisabled}
+                  value={section}
+                  onChange={(e: any) => setSection(e.target.value)}
+                  type="text"
+                  placeholder="B"
+                />
               </div>
-            </div>
+            </div>) }
           </div>
         </div>
         <div className="flex text-center relative left-20">
-          {isDisabled && <Button onClick = {handleUpdatePofile} >Update Profile</Button>}
-          {!isDisabled && <Button onClick = {handleSaveProfile}>Save</Button>}
+          {isDisabled && (
+            <Button onClick={handleUpdatePofile}>Update Profile</Button>
+          )}
+          {!isDisabled && <Button onClick={handleSaveProfile}>Save</Button>}
         </div>
       </div>
     </div>

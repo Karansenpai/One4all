@@ -8,7 +8,6 @@ export const handleGoogleLogin = async () =>{
     await signIn("google");
 }
 
-
 export const handleGithubLogin = async () =>{
     await signIn("github");
 }

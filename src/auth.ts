@@ -74,6 +74,9 @@ export const {
       return true
     },
     async session({token,session}){
+
+      console.log("Token");
+      console.log(token);
       if(token.sub && session.user){
         session.user.id = token.sub;
         session.user.Role = token.Role as string;
@@ -101,7 +104,7 @@ export const {
       token.Role = existingUser.Role;
       token.username = existingUser.username;
       token.picture = existingUser.avatar || "";
-      token.section = existingUser.section || "A";
+      token.section = existingUser.section || "";
       token.Semester = existingUser.Semester || "";
       token.Year = existingUser.Year || "";
       token.Branch = existingUser.Branch || "";

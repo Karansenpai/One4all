@@ -9,7 +9,7 @@ import  {
 } from "@/route";
 
 
-const {auth} = NextAuth(authConfig);
+const {auth} = NextAuth(authConfig)
 export default auth( async(req) => {
 
 

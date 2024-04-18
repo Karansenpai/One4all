@@ -42,7 +42,7 @@ const userSchema = new mongoose.Schema<IUserDocument>(
         },
         section: {
             type: String,
-            default: "A",
+            default: "",
         },
         userId: {
             type: String,

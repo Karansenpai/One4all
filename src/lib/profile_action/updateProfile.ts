@@ -6,6 +6,8 @@ import {v2 as cloudinary} from "cloudinary";
 export const updateProfile = async(email:string,studentId:string,department:string,section:string, imgUrl:string) => {
 
     try{
+
+        console.log(email,studentId,department,section,imgUrl)
         await connectToMongoDB();
         const user = await User.findOne({email});
         if(!user){
@@ -23,7 +25,6 @@ export const updateProfile = async(email:string,studentId:string,department:stri
         user.section = section;
         user.avatar = imgUrl;
         await user.save();
-
         return "user updated succesfully";
     }
     catch(err){
