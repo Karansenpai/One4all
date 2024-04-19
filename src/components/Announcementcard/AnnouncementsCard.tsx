@@ -19,6 +19,9 @@ import { FaComments } from "react-icons/fa";
 import Link from "next/link";
 const AnnouncementsCard = ({ post }: any) => {
   const { data: session } = useSession();
+
+  console.log(session);
+  console.log(post);
   const [comment, setcomment] = React.useState("");
   const [open, setopen] = React.useState(false);
   const { toast } = useToast();
@@ -63,7 +66,7 @@ const AnnouncementsCard = ({ post }: any) => {
               <div>{post?.updatedAt?.toDateString()}</div>
             </div>
           </div>
-          <div className="self-end">
+         {session?.user?.id === post?.postedBy && (<div className="self-end">
             <DropdownMenu>
               <DropdownMenuTrigger>
                 <Image src="/menu1.png" width={30} height={30} alt="" />
@@ -88,6 +91,7 @@ const AnnouncementsCard = ({ post }: any) => {
               </DropdownMenuContent>
             </DropdownMenu>
           </div>
+         )}
         </div>
         <div className="m-3 p-3 text-justify">
           <p>{post.text}</p>

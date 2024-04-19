@@ -20,9 +20,6 @@ export const getPost = async (id: string) => {
 export const getReplies = async (id: string) => {
 
     await connectToMongoDB();
-
-    console.log(id);
-    console.log("Replies le rhe h");
     const post = await Post.findById(id);
     const replies = post?.replies || [];
     var Reply : any = [];

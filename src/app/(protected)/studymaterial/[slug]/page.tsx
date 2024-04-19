@@ -42,8 +42,8 @@ export default async function SingleCoursePage({ params }: any) {
           <div className={styles.courseContent}></div>
         </div>
         <div className={styles.courseMaterial}>
-          <CourseMaterial />
-          <CourseMaterial />
+          <CourseMaterial url = {"/recursion.pdf"} />
+          <CourseMaterial url = {"/sorting.pdf"}/>
         </div>
       </div>
     </div>
