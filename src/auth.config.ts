@@ -21,8 +21,6 @@ export default {
 
         const { username, password } = credentials;
 
-        console.log("logging in");
-
         await connectToMongoDB();
 
         const user = await User.findOne({ username: username });

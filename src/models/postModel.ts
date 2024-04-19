@@ -9,7 +9,7 @@ export interface IPost {
     img: string;
     section: string;
     replies: {
-        userId: mongoose.Schema.Types.ObjectId;
+        userId: string,
         text: string;
         userProfilePic: string;
         username: string;
@@ -50,8 +50,7 @@ const postSchema = new mongoose.Schema({
     replies: [
         {
             userId: {
-                type: mongoose.Schema.Types.ObjectId,
-                ref: "User",
+                type: String,
                 required: true,
             },
             text: {

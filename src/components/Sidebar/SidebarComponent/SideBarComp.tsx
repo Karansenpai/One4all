@@ -7,7 +7,6 @@ import { useSession } from "next-auth/react";
 
 const SideBarComp = () => {
   const { data: session, status } = useSession();
-  console.log(session);
   return (
     <div className={styles.container}>
       <div className={styles.user}>
@@ -21,7 +20,7 @@ const SideBarComp = () => {
           />
         </div>
         <div className={styles.detail}>
-          <h2>{session?.user?.name}</h2>
+          <h2>{session?.user?.username}</h2>
           <h3>{session?.user?.Role}</h3>
           {session?.user?.Role === "Student" && (
             <h3>Sec {session?.user?.section}</h3>

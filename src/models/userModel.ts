@@ -36,6 +36,7 @@ const userSchema = new mongoose.Schema<IUserDocument>(
         },
         avatar: {
             type: String,
+            default: "",
         },
         password: {
             type: String,

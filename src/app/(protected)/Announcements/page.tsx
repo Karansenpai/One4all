@@ -37,7 +37,7 @@ const Announcements = () => {
   const handleCreatePost = async () => {
     const formData = new FormData();
 
-    formData.append("Name", session?.user?.name as string);
+    formData.append("Name", session?.user?.username as string);
     formData.append("profilePic", session?.user?.picture as string);
     formData.append("Content", input);
     formData.append("Image", (imgUrl as string) || "");
