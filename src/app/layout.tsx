@@ -40,16 +40,15 @@ export default async function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-            <SessionProvider session={session}>
-              <div className="flex justify-center align-center fixed top-80 left-80 right-80 bottom-80 place-self-center">
-                <Toaster />
-              </div>
-              <div className="z-2">
-                <Navbar />
-              </div>
-
-              {children}
-            </SessionProvider>
+          <SessionProvider session={session}>
+            <div className="flex justify-center align-center fixed top-80 left-80 right-80 bottom-80 place-self-center">
+              <Toaster />
+            </div>
+            <div className="fixed w-[100%] z-10 mb-[100px]">
+              <Navbar />
+            </div>
+            <div>{children}</div>
+          </SessionProvider>
         </ThemeProvider>
       </body>
     </html>

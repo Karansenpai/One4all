@@ -2,4 +2,6 @@
   margin-left: 10px;
   margin-right: 10px;
   width: 100%;
+  position: relative;
+  margin-top: 120px;
 }

@@ -73,7 +73,7 @@ const Announcements = () => {
   }, []);
 
   return (
-    <div className=" w-full flex-row">
+    <div className="relative my-[120px] w-full flex-row">
       {session?.user?.Role !== "Student" && (
         <div className="flex-col text-lg justify-center items-center p-10 m-5 gap-5 ">
           <div
