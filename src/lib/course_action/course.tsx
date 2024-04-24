@@ -110,10 +110,12 @@ export const courseUnEnroll = async (code: string, studentId: string) => {
 export const fetchStudentCourses = async (studentId: string) => {
   await connectToMongoDB();
   try {
+    // const courses = (await Course.find({ students: studentId }));
     console.log(studentId);
     const courses = await Course.find({ students: studentId });
-    console.log(courses);
     if (courses) {
+      console.log("CORSSE")
+      console.log(courses);
       return courses;
     }
     return "No courses found";

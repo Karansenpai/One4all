@@ -86,3 +86,20 @@ export const isPresent = async (RollNo: string, course: string, date: Date) => {
     console.log(err);
   }
 };
+
+export const fetchStudentAttendance = async (RollNo: string, course: string) => {
+  await connectToMongoDB();
+  try {
+
+    console.log(RollNo, course)
+    const attendance = await Attendance.findOne({ RollNo,course });
+    console.log(attendance);
+
+    const count = attendance?.count;
+    return count;
+   
+  } catch (err) {
+    console.log(err);
+  }
+
+}

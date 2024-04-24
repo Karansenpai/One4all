@@ -1,3 +1,7 @@
+import { connectToMongoDB } from "@/lib/db";
+import { fetchStudentCourses } from "@/lib/course_action/course";
+import { auth } from "@/auth";
+
 const semesters = [
   "Semester 1",
   "Semester 2",
@@ -9,13 +13,14 @@ const semesters = [
   "Semester 8",
 ];
 
-const currCourses = [
+const CurrCourses = [
   "Course 1",
   "Course 2",
   "Course 3",
   "Course 4",
   "Course 5",
 ];
+
 
 export const semester = (config: any) => {
   const cfg = config || {};
@@ -33,15 +38,15 @@ export const semester = (config: any) => {
 };
 
 
-export const course = (config: any) => {
+export const course = (config: any, currCourses: any) => {
+  // console.log(currCourses);
   const cfg = config || {};
-  const count = cfg.count || currCourses.length;
+  const count = cfg.count || CurrCourses.length;
   const section = cfg.section;
   const values = [];
   let i, value;
-
   for (i = 0; i < count; ++i) {
-    value = currCourses[Math.ceil(i) % 8];
+    value = CurrCourses[Math.ceil(i) % 8];
     values.push(value.substring(0, section));
   }
 

@@ -63,8 +63,8 @@ export default function Component() {
               <SelectValue placeholder="Select role" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="student">Student</SelectItem>
-              <SelectItem value="admin">Admin</SelectItem>
+              <SelectItem value="Student">Student</SelectItem>
+              <SelectItem value="Admin">Admin</SelectItem>
               <SelectItem value="faculty">Faculty</SelectItem>
             </SelectContent>
           </Select>
