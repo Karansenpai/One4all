@@ -38,7 +38,7 @@ const Announcements = () => {
     const formData = new FormData();
 
     formData.append("Name", session?.user?.username as string);
-    formData.append("profilePic", session?.user?.picture as string);
+    formData.append("profilePic", (session?.user?.picture as string) || "");
     formData.append("Content", input);
     formData.append("Image", (imgUrl as string) || "");
     formData.append("selected", selected);
@@ -80,13 +80,24 @@ const Announcements = () => {
             className={`flex gap-10 justify-center px-20 ${styles.container}`}
           >
             <div className={styles.avatar}>
-              <Image
-                className={styles.img}
-                src="/noavatar.png"
-                width={80}
-                height={80}
-                alt=""
-              />
+              {session?.user?.picture && (
+                <Image
+                  className={styles.img}
+                  src={session?.user?.picture}
+                  width={80}
+                  height={80}
+                  alt=""
+                />
+              )}
+              {!session?.user?.picture && (
+                <Image
+                  className={styles.img}
+                  src="/noavatar.png"
+                  width={80}
+                  height={80}
+                  alt=""
+                />
+              )}
             </div>
             <div className="flex items-center">
               <Input
@@ -172,7 +183,10 @@ const Announcements = () => {
           return (
             <div>
               {(post?.section === session?.user?.section ||
-                post?.section === "All") && <AnnouncementsCard post={post} />}
+                post?.section === "All" ||
+                session?.user?.Role === "faculty") && (
+                <AnnouncementsCard post={post} />
+              )}
             </div>
           );
         })}

@@ -11,7 +11,6 @@ const SideBarComp = () => {
     <div className={styles.container}>
       <div className={styles.user}>
         <div className={styles.imgCnt}>
-
           {session?.user?.picture && (
             <Image
               src={session?.user?.picture}
@@ -30,7 +29,6 @@ const SideBarComp = () => {
               height={100}
             />
           )}
-
         </div>
         <div className={styles.detail}>
           <h2>{session?.user?.username}</h2>
@@ -42,6 +40,14 @@ const SideBarComp = () => {
         </div>
       </div>
       <div className={styles.sideitems}>
+        {session?.user?.Role === "Student" && (
+          <Link
+            className="text-white bg-purple-700 hover:bg-purple-800 focus:outline-none focus:ring-4 focus:ring-purple-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900"
+            href="/home"
+          >
+            DashBoard
+          </Link>
+        )}
         <Link
           className="text-white bg-purple-700 hover:bg-purple-800 focus:outline-none focus:ring-4 focus:ring-purple-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900
 "
@@ -60,6 +66,31 @@ const SideBarComp = () => {
           href="/studymaterial"
         >
           Study Material
+        </Link>
+
+        {session?.user?.Role === "faculty" && (
+          <Link
+            className="text-white bg-purple-700 hover:bg-purple-800 focus:outline-none focus:ring-4 focus:ring-purple-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900"
+            href="/Attendance"
+          >
+            Attendance
+          </Link>
+        )}
+
+        {session?.user?.Role === "Student" && (
+          <Link
+            className="text-white bg-purple-700 hover:bg-purple-800 focus:outline-none focus:ring-4 focus:ring-purple-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900"
+            href="/StudentCourse"
+          >
+            Courses
+          </Link>
+        )}
+
+        <Link
+          className="text-white bg-purple-700 hover:bg-purple-800 focus:outline-none focus:ring-4 focus:ring-purple-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900"
+          href="/Courses"
+        >
+          All Courses
         </Link>
       </div>
     </div>

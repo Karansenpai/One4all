@@ -64,9 +64,10 @@ const ProfileBox = () => {
                   fill
                   className={styles.img}
                 />
-              
               )}
-              {!session?.user?.picture && (<Image alt="" src="/noavatar.png" fill className={styles.img} />)}
+              {!session?.user?.picture && (
+                <Image alt="" src="/noavatar.png" fill className={styles.img} />
+              )}
             </div>
 
             <div className="flex  gap-1">
@@ -120,20 +121,21 @@ const ProfileBox = () => {
               </div>
             </div>
 
-            <div className="m-5 p-5">
-              <div className="my-2">Department</div>
-              <div>
-                <Input
-                  disabled={isDisabled}
-                  value={department}
-                  onChange={(e: any) => setDepartment(e.target.value)}
-                  type="text"
-                  placeholder={session?.user?.Department as string}
-                />
+            {session?.user?.Role !== "Admin" && (
+              <div className="m-5 p-5">
+                <div className="my-2">Department</div>
+                <div>
+                  <Input
+                    disabled={isDisabled}
+                    value={department}
+                    onChange={(e: any) => setDepartment(e.target.value)}
+                    type="text"
+                    placeholder={session?.user?.Department as string}
+                  />
+                </div>
               </div>
-            </div>
-
-            {session?.user?.Role !== "faculty" && (
+            )}
+            {session?.user?.Role === "Student" && (
               <div className="m-5 p-5">
                 <div className="my-2">Section</div>
                 <div>
@@ -149,6 +151,7 @@ const ProfileBox = () => {
             )}
           </div>
         </div>
+
         <div className="flex justify-center text-center relative left-20 z-0">
           {isDisabled && (
             <Button onClick={handleUpdatePofile}>Update Profile</Button>

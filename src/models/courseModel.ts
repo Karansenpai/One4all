@@ -5,6 +5,7 @@ export interface ICourse {
     code?: string;
     credit?: number;
     students?: string[];
+    description?: string;
 }
 
 export interface ICourseDocument extends ICourse, Document {
@@ -30,9 +31,13 @@ const CourseSchema = new mongoose.Schema<ICourseDocument>(
         students: [
             {
                 type: String,
-                required: true,
+                default: [],
             }
-        ]
+        ],
+        description: {
+            type: String,
+            required: true,
+        }
     },
     { timestamps: true }
 

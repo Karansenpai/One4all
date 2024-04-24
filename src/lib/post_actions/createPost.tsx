@@ -19,6 +19,8 @@ export const createPost = async(Formdata:FormData) => {
     try{
         await connectToMongoDB();
 
+        console.log(profilePic);
+
         const post = new Post({
             Name: Name,
             postedBy: userId,
