@@ -43,8 +43,11 @@ export default function ParallaxPage() {
           style={{ pointerEvents: "none" }}
         >
           <div className="px-[50px]">
-            <h1 className="text-[#000000]">Features</h1>
+            <h1 className="text-[#000000] flex justify-center font-bold">
+              FEATURES
+            </h1>
             {/* <img src="/HP.jpg" style={{ width: "15%", marginLeft: "70%" }} /> */}
+            <Features />
           </div>
         </ParallaxLayer>
 
@@ -246,22 +249,6 @@ export default function ParallaxPage() {
           <div className="bg-[#000000] w-[100%]">
             <ContactPage />
           </div>
-        </ParallaxLayer>
-
-        <ParallaxLayer
-          offset={1}
-          speed={0.1}
-          onClick={() => parallax.current.scrollTo(2)}
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "flex-start",
-            width: "60%",
-            height: "20%",
-          }}
-        >
-          <Features />
-          {/* <img src={url("bash")} style={{ width: "40%" }} /> */}
         </ParallaxLayer>
       </Parallax>
     </div>

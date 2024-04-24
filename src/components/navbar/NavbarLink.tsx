@@ -6,6 +6,7 @@ import Link from "next/link";
 import style from "./NavbarLink.module.css";
 import Sidebar from "../Sidebar/Sidebar";
 import SideBarComp from "../Sidebar/SidebarComponent/SideBarComp";
+import { Button } from "../ui/button";
 
 const NavbarLink = ({ session }: any) => {
   const [open, isopen] = useState(false);
@@ -33,6 +34,13 @@ const NavbarLink = ({ session }: any) => {
 
       {open && (
         <div className={`${style.sidebar} dark:bg-[#121E31] bg-[#FFFFFF]`}>
+          <Button
+            onClick={() => {
+              isopen(!open);
+            }}
+          >
+            Close
+          </Button>
           <SideBarComp />
         </div>
       )}

@@ -77,7 +77,7 @@ const Courses = () => {
         </div>
       )}
 
-      <div className="flex gap-[5rem] p-10 m-10">
+      <div className="flex flex-wrap gap-[5rem] p-10">
         {courses.map((course) => {
           return (
             <div className="flex">

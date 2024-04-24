@@ -1,0 +1,10 @@
+.para{
+  display:block ;
+}
+
+@media (max-width:768px) {
+  .para{
+    display: none;
+  }
+  
+}
