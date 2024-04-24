@@ -51,11 +51,11 @@ const ProfileBox = () => {
   const imageRef = useRef<HTMLInputElement>(null);
 
   return (
-    <div className="w-full h-[90dvh] flex justify-center ">
-      <div className=" my-[5rem] flex-col ">
-        <div className={`flex justify-center ${styles.container} gap-10 `}>
+    <div className="w-full h-[90dvh] flex flex-col justify-center ">
+      <div className=" my-[5rem]  flex-col">
+        <div className={`flex flex-col justify-center ${styles.container}  `}>
           {/* left */}
-          <div className="flex flex-col gap-10 items-center justify-center">
+          <div className="flex flex-col gap-5 items-center justify-center">
             <div className={`${styles.imgCnt}`}>
               {session?.user?.picture && (
                 <Image
@@ -83,7 +83,7 @@ const ProfileBox = () => {
                 type="file"
               />
             </div>
-            <div className="flex-col m-5 p-10 gap-10">
+            <div className="flex-col m-5 p-5 gap-10">
               <h2>{session?.user?.username}</h2>
 
               <h2>{session?.user?.Branch}</h2>
@@ -95,7 +95,7 @@ const ProfileBox = () => {
           </div>
 
           {/* Right */}
-          <div className="flex-col gap-2">
+          <div className="flex justify-center gap-2">
             <div className="m-5 p-5">
               <div className="my-2">Email</div>
               <div>
@@ -152,7 +152,7 @@ const ProfileBox = () => {
           </div>
         </div>
 
-        <div className="flex justify-center text-center relative left-20 z-0">
+        <div className="flex justify-center text-center relative z-0">
           {isDisabled && (
             <Button onClick={handleUpdatePofile}>Update Profile</Button>
           )}
