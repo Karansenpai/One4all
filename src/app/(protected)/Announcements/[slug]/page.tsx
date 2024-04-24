@@ -19,7 +19,7 @@ const page = ({ params }: any) => {
 
 
   return (
-    <div className="w-full ">
+    <div className="relative my-[120px] w-full ">
       <div className="flex-col text-lg justify-center items-center p-10 m-5 gap-5 ">
         <div>
             <Replies post={post} />

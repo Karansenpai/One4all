@@ -11,13 +11,26 @@ const SideBarComp = () => {
     <div className={styles.container}>
       <div className={styles.user}>
         <div className={styles.imgCnt}>
-          <Image
-            src="/noavatar.png"
-            className={`${styles.avatar} `}
-            alt=""
-            width={100}
-            height={100}
-          />
+
+          {session?.user?.picture && (
+            <Image
+              src={session?.user?.picture}
+              className={`${styles.avatar} `}
+              alt=""
+              width={100}
+              height={100}
+            />
+          )}
+          {!session?.user?.picture && (
+            <Image
+              src="/noavatar.png"
+              className={`${styles.avatar} `}
+              alt=""
+              width={100}
+              height={100}
+            />
+          )}
+
         </div>
         <div className={styles.detail}>
           <h2>{session?.user?.username}</h2>

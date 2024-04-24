@@ -12,6 +12,7 @@ import styles from "./profile.module.css";
 
 const ProfileBox = () => {
   const { data: session, status } = useSession();
+  console.log(session);
   const [isDisabled, setIsDisabled] = useState(true);
   const [studentId, setStudentId] = useState(session?.user?.RollNo);
   const [department, setDepartment] = useState(session?.user?.Department);
@@ -34,13 +35,13 @@ const ProfileBox = () => {
 
   const handleSaveProfile = async () => {
     setIsDisabled(true);
-    const email = session?.user.email;
+    const email = session?.user?.email;
     const response = await updateProfile(
-      email as string,
-      studentId as string,
-      department as string,
-      section as string,
-      imgUrl as string
+      (email as string) || "",
+      (studentId as string) || "",
+      (department as string) || "",
+      (section as string) || "",
+      (imgUrl as string) || ""
     );
     if ((response as string).length > 0) {
       alert(response);
@@ -49,8 +50,6 @@ const ProfileBox = () => {
   const { handleImageChange, imgUrl, setImgUrl } = usePreviewImage();
   const imageRef = useRef<HTMLInputElement>(null);
 
-  console.log(session);
-
   return (
     <div className="w-full h-[90dvh] flex justify-center ">
       <div className=" my-[5rem] flex-col ">
@@ -58,7 +57,16 @@ const ProfileBox = () => {
           {/* left */}
           <div className="flex flex-col gap-10 items-center justify-center">
             <div className={`${styles.imgCnt}`}>
-              <Image alt="" src="/noavatar.png" fill className={styles.img} />
+              {session?.user?.picture && (
+                <Image
+                  alt=""
+                  src={session?.user?.picture as string}
+                  fill
+                  className={styles.img}
+                />
+              
+              )}
+              {!session?.user?.picture && (<Image alt="" src="/noavatar.png" fill className={styles.img} />)}
             </div>
 
             <div className="flex  gap-1">
@@ -79,7 +87,9 @@ const ProfileBox = () => {
 
               <h2>{session?.user?.Branch}</h2>
 
-              {session?.user?.Semester && <h2>Sem {session?.user?.Semester}</h2>}
+              {session?.user?.Semester && (
+                <h2>Sem {session?.user?.Semester}</h2>
+              )}
             </div>
           </div>
 
@@ -90,9 +100,9 @@ const ProfileBox = () => {
               <div>
                 <Input
                   disabled
-                  value={session?.user.email}
+                  value={session?.user?.email}
                   type="email"
-                  placeholder="Email"
+                  placeholder={session?.user?.email as string}
                 />
               </div>
             </div>
@@ -105,7 +115,7 @@ const ProfileBox = () => {
                   value={studentId}
                   onChange={(e: any) => setStudentId(e.target.value)}
                   type="text"
-                  placeholder="IIT2022132"
+                  placeholder={session?.user?.RollNo as string}
                 />
               </div>
             </div>
@@ -118,23 +128,25 @@ const ProfileBox = () => {
                   value={department}
                   onChange={(e: any) => setDepartment(e.target.value)}
                   type="text"
-                  placeholder="IT"
+                  placeholder={session?.user?.Department as string}
                 />
               </div>
             </div>
 
-            {session?.user?.Role !== 'faculty' && (<div className="m-5 p-5">
-              <div className="my-2">Section</div>
-              <div>
-                <Input
-                  disabled={isDisabled}
-                  value={section}
-                  onChange={(e: any) => setSection(e.target.value)}
-                  type="text"
-                  placeholder="B"
-                />
+            {session?.user?.Role !== "faculty" && (
+              <div className="m-5 p-5">
+                <div className="my-2">Section</div>
+                <div>
+                  <Input
+                    disabled={isDisabled}
+                    value={section}
+                    onChange={(e: any) => setSection(e.target.value)}
+                    type="text"
+                    placeholder={session?.user?.section as string}
+                  />
+                </div>
               </div>
-            </div>) }
+            )}
           </div>
         </div>
         <div className="flex justify-center text-center relative left-20 z-0">
