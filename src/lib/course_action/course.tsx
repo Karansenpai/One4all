@@ -37,6 +37,30 @@ export const fetchCourses = async () => {
   }
 };
 
+export const fetchStudents = async (code: string, studentId: string) => {
+  await connectToMongoDB();
+
+  try {
+
+    console.log(code, studentId);
+    const course = await Course.findOne({ code });
+
+    console.log(course);
+
+    if(course){
+
+      var students = course?.students;
+      console.log(students);
+      return students as string[];
+    }
+
+    return "Student not found";
+
+  } catch (err) {
+    return err as string;
+  }
+};
+
 export const isEnrolled = async (code: string, studentId: string) => {
   await connectToMongoDB();
 
@@ -86,11 +110,10 @@ export const courseUnEnroll = async (code: string, studentId: string) => {
 export const fetchStudentCourses = async (studentId: string) => {
   await connectToMongoDB();
   try {
-
     console.log(studentId);
     const courses = await Course.find({ students: studentId });
     console.log(courses);
-    if(courses){
+    if (courses) {
       return courses;
     }
     return "No courses found";

@@ -1,8 +1,8 @@
 import mongoose, { Model, Document } from "mongoose";
 
 export interface IAttendance {
-    userId?: string;
-    subject?: string,
+    RollNo?: string;
+    course?: string,
     count? : number,
     data?: {
         date: string,
@@ -18,11 +18,11 @@ export interface IAttendanceDocument extends IAttendance,Document {
 
 const AttendanceSchema = new mongoose.Schema<IAttendanceDocument>(
     {
-        userId: {
+        RollNo: {
             type: String,
             required: true,
         },
-        subject: {
+        course: {
             type: String,
             required: true,
         },
