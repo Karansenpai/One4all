@@ -31,7 +31,9 @@ const Navlink = ({ session }: any) => {
           <form action={logout}>
             <Button>Log out</Button>
           </form>
-          <Button>{session.user.Role}</Button>
+          <Button onClick={()=>{
+            router.push("/home")
+          }}>{session.user.Role}</Button>
         </>
       )}
       

@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import Dataribbon from "@/components/Dashboard/DataRibbon/dataribbon";
 import DataChart from "@/components/Dashboard/dataChart/dataChart";
 
-
 const semesters = [
   "Sem 1",
   "Sem 2",
@@ -28,6 +27,7 @@ import { fetchStudentCourses } from "@/lib/course_action/course";
 import { useSession } from "next-auth/react";
 import { ICourseDocument } from "@/models/courseModel";
 import { fetchStudentAttendance } from "@/lib/attendance_action/attendance";
+import { fetchCGPA } from "@/lib/cgpa_action/cgpa";
 
 
 const Home = () => {
@@ -35,7 +35,25 @@ const Home = () => {
   const [courseAttendanceData, setCourseAttendanceData] = useState<number[]>(
     []
   );
+  const [cgpa, setcgpa] = useState<number[]>([]);
   const { data: session } = useSession();
+  
+    useEffect(() => {
+      const fetchCgpa = async () => {
+        const res = await fetchCGPA(session?.user?.RollNo as string);
+        if(res){
+          console.log(res);
+          const updatedCgpa = [0,0,0,0,0,0,0,0];
+          res.map((item: any) => {
+            updatedCgpa[item.sem-1] = item.cgpa;
+          })
+          setcgpa(updatedCgpa);
+        }
+      };
+      fetchCgpa();
+    }, [session]);
+
+
 
   useEffect(() => {
     const getCourse = async () => {
@@ -54,20 +72,21 @@ const Home = () => {
 
   useEffect(() => {
     const getAttendance = async () => {
-      const currentCourseName = [...courseName]; 
-  
+      const currentCourseName = [...courseName];
+
       const attendancePromises = currentCourseName.map((course) =>
         fetchStudentAttendance(session?.user?.RollNo as string, course)
       );
-  
+
       const attendanceData = await Promise.all(attendancePromises);
-      setCourseAttendanceData(attendanceData as number[] || 0);
+      setCourseAttendanceData((attendanceData as number[]) || 0);
     };
-  
+
     if (courseName.length > 0) {
       getAttendance();
     }
-  }, [courseName]); 
+  }, [courseName]);
+
 
   const barChartData = {
     labels: courseName,
@@ -99,7 +118,7 @@ const Home = () => {
     datasets: [
       {
         label: "CGPA",
-        data: [100, 90, 80, 70, 60, 50, 40, 30],
+        data: cgpa,
         fill: false,
         borderColor: "rgb(75, 192, 192)",
         tension: 0.1,

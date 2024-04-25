@@ -111,11 +111,9 @@ export const fetchStudentCourses = async (studentId: string) => {
   await connectToMongoDB();
   try {
     // const courses = (await Course.find({ students: studentId }));
-    console.log(studentId);
+   
     const courses = await Course.find({ students: studentId });
     if (courses) {
-      console.log("CORSSE")
-      console.log(courses);
       return courses;
     }
     return "No courses found";

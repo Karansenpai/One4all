@@ -74,7 +74,7 @@ const Attendance = () => {
     checkPresent();
   }, [date, student, course]);
 
-  console.log(hiddenLabels);
+  // console.log(hiddenLabels);
 
   const handleAttendance = async () => {
     const res = await AddAttendance(student, course, date as Date, present);

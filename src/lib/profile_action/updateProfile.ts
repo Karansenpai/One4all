@@ -10,7 +10,7 @@ cloudinary.config({
 });
 
 
-export const updateProfile = async (email: string, studentId: string, department: string, section: string, imgUrl: string) => {
+export const updateProfile = async (email: string, studentId: string, department: string, section: string, imgUrl: string, sem: string) => {
 
     try {
         await connectToMongoDB();
@@ -28,6 +28,7 @@ export const updateProfile = async (email: string, studentId: string, department
         user.Department = department || user.Department;
         user.section = section || user.section; 
         user.avatar = imgUrl || user?.avatar;
+        user.Semester = sem || user.Semester;
         await user.save();
         return "user updated succesfully";
     }

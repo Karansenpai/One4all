@@ -2,8 +2,10 @@ import mongoose, { Model, Document } from "mongoose";
 
 export interface ICgpaModel {
     RollNo?: string;
-    sem?: number,
-    count?: number,
+    data?: {
+        sem: number,
+        cgpa: number,
+    }[],
 }
 
 export interface ICgpaModelDocument extends ICgpaModel, Document {
@@ -11,25 +13,33 @@ export interface ICgpaModelDocument extends ICgpaModel, Document {
     updatedAt: Date;
 }
 
-const AttendanceSchema = new mongoose.Schema<ICgpaModelDocument>(
+const cgpaSchema = new mongoose.Schema<ICgpaModelDocument>(
     {
         RollNo: {
             type: String,
             required: true,
         },
-        sem: {
-            type: Number,
+        data: {
+            type: [
+                {
+                    sem: {
+                        type: Number,
+                        required: true,
+                    },
+                    cgpa: {
+                        type: Number,
+                        default: 0,
+                    },
+                },
+            ],
             required: true,
         },
-        count: {
-            type: Number,
-            default: 0,
-        },
+
     },
     { timestamps: true }
 
 );
 
-const Attendance: Model<ICgpaModelDocument> = mongoose.models?.Attendance || mongoose.model("Attendance", AttendanceSchema);
+const Cgpa: Model<ICgpaModelDocument> = mongoose.models?.Cgpa || mongoose.model("Cgpa", cgpaSchema);
 
-export default Attendance;
+export default Cgpa;

@@ -14,19 +14,21 @@ interface NavItem {
 
 export default function SingleCoursePage({ params }: any) {
   const { slug } = params;
-  const [courseDetail, setCourseDetails] = useState<NavItem[]>([]);
+  const [courseDetail, setCourseDetails] = useState<NavItem>();
   const { data: session, status } = useSession();
 
   useEffect(() => {
     const fetchCourseDetails = async () => {
-      const data = await getcourseDetails(slug);
-      data && setCourseDetails(data);
+      const data =  getcourseDetails(slug);
+      console.log(data);
+      if(data){
+        setCourseDetails(data as NavItem);
+      }
     };
     fetchCourseDetails();
   }, [slug]);
 
   const links = courseDetail?.links;
-  console.log(links);
   return (
     <div className={styles.main}>
       <div className={styles.title}>

@@ -12,11 +12,11 @@ import styles from "./profile.module.css";
 
 const ProfileBox = () => {
   const { data: session, status } = useSession();
-  console.log(session);
   const [isDisabled, setIsDisabled] = useState(true);
   const [studentId, setStudentId] = useState(session?.user?.RollNo);
   const [department, setDepartment] = useState(session?.user?.Department);
   const [section, setSection] = useState(session?.user?.section);
+  const [sem, setSem] = useState("");
 
   useEffect(() => {
     if (session?.user?.email) {
@@ -41,7 +41,8 @@ const ProfileBox = () => {
       (studentId as string) || "",
       (department as string) || "",
       (section as string) || "",
-      (imgUrl as string) || ""
+      (imgUrl as string) || "",
+      (sem as string) || ""
     );
     if ((response as string).length > 0) {
       alert(response);
@@ -149,6 +150,18 @@ const ProfileBox = () => {
                 </div>
               </div>
             )}
+           <div className="m-5 p-5">
+              <div className="my-2">Semester</div>
+              <div>
+                <Input
+                  disabled={isDisabled}
+                  value={sem}
+                  onChange={(e: any) => setSem(e.target.value)}
+                  type="text"
+                  placeholder={session?.user?.Semester as string}
+                />
+              </div>
+            </div>
           </div>
         </div>
 
