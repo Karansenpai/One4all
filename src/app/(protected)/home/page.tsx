@@ -29,7 +29,6 @@ import { ICourseDocument } from "@/models/courseModel";
 import { fetchStudentAttendance } from "@/lib/attendance_action/attendance";
 import { fetchCGPA } from "@/lib/cgpa_action/cgpa";
 
-
 const Home = () => {
   const [courseName, setCourseName] = useState<string[]>([]);
   const [courseAttendanceData, setCourseAttendanceData] = useState<number[]>(
@@ -37,23 +36,21 @@ const Home = () => {
   );
   const [cgpa, setcgpa] = useState<number[]>([]);
   const { data: session } = useSession();
-  
-    useEffect(() => {
-      const fetchCgpa = async () => {
-        const res = await fetchCGPA(session?.user?.RollNo as string);
-        if(res){
-          console.log(res);
-          const updatedCgpa = [0,0,0,0,0,0,0,0];
-          res.map((item: any) => {
-            updatedCgpa[item.sem-1] = item.cgpa;
-          })
-          setcgpa(updatedCgpa);
-        }
-      };
-      fetchCgpa();
-    }, [session]);
 
-
+  useEffect(() => {
+    const fetchCgpa = async () => {
+      const res = await fetchCGPA(session?.user?.RollNo as string);
+      if (res) {
+        console.log(res);
+        const updatedCgpa = [0, 0, 0, 0, 0, 0, 0, 0];
+        res.map((item: any) => {
+          updatedCgpa[item.sem - 1] = item.cgpa;
+        });
+        setcgpa(updatedCgpa);
+      }
+    };
+    fetchCgpa();
+  }, [session]);
 
   useEffect(() => {
     const getCourse = async () => {
@@ -86,7 +83,6 @@ const Home = () => {
       getAttendance();
     }
   }, [courseName]);
-
 
   const barChartData = {
     labels: courseName,
