@@ -62,19 +62,17 @@ const CourseInfo: React.FC<{ item: ICourseDocument }> = ({ item }) => {
     }
   };
   return (
-    <Card className="w-[400px] overflow-hidden ">
-      <CardContent className="p-6 bg-[#334155]">
-        <div className="flex items-center gap-4">
+    <Card className="w-[400px] h-[400px] overflow-hidden ">
+      <CardContent className="h-[70%] p-6 bg-[#334155]">
+        <div className="flex h-[100%]  gap-4">
           <img
             alt="Course"
-            className="rounded-lg"
-            height="200"
+            className="h-[150px] w-[150px] rounded-lg"
             src="/download.png"
-            width="200"
           />
           <div className="grid gap-1.5">
             <h2 className="text-lg font-semibold">{item?.name}</h2>
-            <p className="text-sm text-gray-500 dark:text-gray-400">
+            <p className="overflow-y-hidden text-sm text-gray-500 dark:text-gray-400  ">
               {item?.description}
             </p>
           </div>
@@ -91,7 +89,7 @@ const CourseInfo: React.FC<{ item: ICourseDocument }> = ({ item }) => {
         )}
       </CardContent>
 
-      <CardFooter className="border-t p-6 bg-[#121E31] flex justify-center"></CardFooter>
+      <CardFooter className="h-[30%] border-t p-6 bg-[#121E31] flex justify-center"></CardFooter>
     </Card>
   );
 };
