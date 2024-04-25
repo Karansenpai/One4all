@@ -12,6 +12,7 @@ export default function LoginForm() {
         display: "flex",
         flexDirection: "column",
         gap: "1rem",
+        paddingTop: '2rem',
       }}
     >
       <form className="mx-auto max-w-md space-y-8" action={loginUser}>

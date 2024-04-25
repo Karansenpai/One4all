@@ -1,12 +1,27 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { styled } from "@mui/material/styles";
-import Grid from "@mui/material/Grid";
-import Paper from "@mui/material/Paper";
-import Box from "@mui/material/Box";
 import Dataribbon from "@/components/Dashboard/DataRibbon/dataribbon";
 import DataChart from "@/components/Dashboard/dataChart/dataChart";
-import { course } from "@/components/Dashboard/dataChart/Util";
+
+
+const semesters = [
+  "Sem 1",
+  "Sem 2",
+  "Sem 3",
+  "Sem 4",
+  "Sem 5",
+  "Sem 6",
+  "Sem 7",
+  "Sem 8",
+];
+
+// const values = [];
+//   let i, value;
+
+//   for (i = 0; i < count; ++i) {
+//     value = semesters[Math.ceil(i) % 8];
+//     values.push(value.substring(0, section));
+//   }
 
 import styles from "./page.module.css";
 import { fetchStudentCourses } from "@/lib/course_action/course";
@@ -14,13 +29,6 @@ import { useSession } from "next-auth/react";
 import { ICourseDocument } from "@/models/courseModel";
 import { fetchStudentAttendance } from "@/lib/attendance_action/attendance";
 
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: "center",
-  color: theme.palette.text.secondary,
-}));
 
 const Home = () => {
   const [courseName, setCourseName] = useState<string[]>([]);
@@ -86,6 +94,19 @@ const Home = () => {
     ],
   };
 
+  const lineChartData = {
+    labels: semesters,
+    datasets: [
+      {
+        label: "CGPA",
+        data: [100, 90, 80, 70, 60, 50, 40, 30],
+        fill: false,
+        borderColor: "rgb(75, 192, 192)",
+        tension: 0.1,
+      },
+    ],
+  };
+
   return (
     <div className="my-[120px] text-white">
       <div className="h-[300px] rounded-lg bg-purple-900 absolute w-[100%]"></div>
@@ -96,7 +117,7 @@ const Home = () => {
       </div>
       <div className="m-5 p-5 flex  flex-col items-center gap-5 flex-wrap    ">
         <div className="relative py-5 w-[70%] bg-black rounded-xl flex-1">
-          {/* <DataChart type="line" data={lineChartData}></DataChart> */}
+          <DataChart type="line" data={lineChartData}></DataChart>
         </div>
         <div
           className={`${styles.container}relative py-5 w-[70%] bg-black rounded-xl flex-1`}
