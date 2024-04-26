@@ -27,12 +27,10 @@ const userSchema = new mongoose.Schema<IUserDocument>(
         username: {
             type: String,
             required: true,
-            unique: true,
         },
         email: {
             type: String,
             required: true,
-            unique: true,
         },
         avatar: {
             type: String,
@@ -71,7 +69,7 @@ const userSchema = new mongoose.Schema<IUserDocument>(
         },
         RollNo: {
             type: String,
-            unique: false,
+            default: "",
         },
         Subjects: {
             type: [String],
