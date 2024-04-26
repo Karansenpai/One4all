@@ -47,9 +47,9 @@ export default function SingleCoursePage({ params }: any) {
             (link: any, index: any) =>
               link && <CourseMaterial key={index} url={link} index={index} />
           )}
-          {session?.user.Role == "faculty" && (
+          {/* {session?.user.Role == "faculty" && (
             <Button className="w-[200px]"> Add Material </Button>
-          )}
+          )} */}
         </div>
       </div>
     </div>

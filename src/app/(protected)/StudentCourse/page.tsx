@@ -23,8 +23,8 @@ const StudentCourse = () => {
   }, [session]);
 
   return (
-    <div className="relative my-[120px] w-full flex-row">
-      <div className="flex gap-[5rem] p-10 m-10">
+    <div className="relative my-[120px] w-[100%] flex-row">
+      <div className="flex w-[100%] flex-wrap gap-[5rem] p-10 m-10">
         {courses.map((course) => {
           return (
             <div className="flex">
