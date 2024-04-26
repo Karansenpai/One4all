@@ -71,7 +71,7 @@ const userSchema = new mongoose.Schema<IUserDocument>(
         },
         RollNo: {
             type: String,
-            default: "",
+            unique: false,
         },
         Subjects: {
             type: [String],
