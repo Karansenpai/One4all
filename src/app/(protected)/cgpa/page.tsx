@@ -22,22 +22,24 @@ const cgpa = () => {
   const [sem, setSem] = useState(0);
   const [student, setStudent] = useState(null);
   const [cgpa, setCgpa] = useState(0);
-  const {toast} = useToast();
+  const { toast } = useToast();
 
-  const handleCgpa = async() =>{
+  const handleCgpa = async () => {
     const res = await setCGPA(sem, cgpa, student || "");
-    if(res){
+    if (res) {
       toast({
         title: "Alert!",
         description: "CGPA added successfully!",
         duration: 5000,
       });
-    
     }
-  }
+  };
   return (
-    <div className="my-[120px]">
-      <div className="flex gap-[2rem]">
+    <div className="mx-[20px] my-[120px] w-[75%] p-5">
+      <div className="flex justify-center">
+        <h1>CGPA</h1>
+      </div>
+      <div className="flex items-center p-5 gap-[2rem]">
         <div>
           <Label>Select Sem</Label>
         </div>
@@ -65,10 +67,22 @@ const cgpa = () => {
         </Select>
       </div>
 
-      <Input type= "text" placeholder="Enter Roll No" onChange={(e:any)=>setStudent(e?.target?.value)}/>
-      <Input type= "number" placeholder="Enter Cgpa" onChange={(e:any)=>setCgpa(parseInt(e?.target?.value))}/>
-      <Button onClick={handleCgpa}> Submit Cgpa</Button>
-
+      <div className="flex flex-col p-2 gap-3 items-center">
+        <Input
+          type="text"
+          placeholder="Enter Roll No"
+          onChange={(e: any) => setStudent(e?.target?.value)}
+        />
+        <Input
+          type="number"
+          placeholder="Enter Cgpa"
+          onChange={(e: any) => setCgpa(parseInt(e?.target?.value))}
+        />
+        <Button className="flex  w-[200px]" onClick={handleCgpa}>
+          {" "}
+          Submit Cgpa
+        </Button>
+      </div>
     </div>
   );
 };

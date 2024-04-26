@@ -89,12 +89,12 @@ const Attendance = () => {
   };
 
   return (
-    <div className="relative my-[120px] w-full flex-row">
+    <div className="mx-[20px] relative my-[120px] w-[75%] p-5 flex-row">
       <div className="flex justify-center">
         <h1 className="text-4xl font-bold">Attendance</h1>
       </div>
 
-      <div className="flex gap-[2rem]">
+      <div className="flex items-center p-5 gap-[2rem]">
         <div>
           <Label>Select Course</Label>
         </div>
@@ -119,7 +119,7 @@ const Attendance = () => {
         </Select>
       </div>
 
-      <div className="flex gap-[2rem]">
+      <div className="flex flex-col p-5 gap-3">
         <div>
           <Label>Select Date</Label>
         </div>
@@ -146,16 +146,16 @@ const Attendance = () => {
           </PopoverContent>
         </Popover>
       </div>
-      <div className="flex gap-[2rem]">
+      <div className="flex p-5 gap-[2rem]">
         <div>
           <Label>Students </Label>
         </div>
         <div>
           {course.length > 0 && (
-            <div className="p-5 m-5">
+            <div className="p-5 m-5 flex flex-col justify-center gap-5">
               {Object.keys(students).map((key) =>
                 !hiddenLabels?.includes(students[parseInt(key)]) ? (
-                  <div className="flex">
+                  <div className="flex items-center gap-3">
                     <Label>{students[parseInt(key)]}</Label>
 
                     <RadioGroup
