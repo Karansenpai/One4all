@@ -150,18 +150,24 @@ const ProfileBox = () => {
                 </div>
               </div>
             )}
-           <div className="m-5 p-5">
-              <div className="my-2">Semester</div>
-              <div>
-                <Input
-                  disabled={isDisabled}
-                  value={sem}
-                  onChange={(e: any) => setSem(e.target.value)}
-                  type="text"
-                  placeholder={session?.user?.Semester as string}
-                />
-              </div>
-            </div>
+
+            {
+              // Only for student
+              session?.user?.Role === "Student" && (
+                <div className="m-5 p-5">
+                  <div className="my-2">Semester</div>
+                  <div>
+                    <Input
+                      disabled={isDisabled}
+                      value={sem}
+                      onChange={(e: any) => setSem(e.target.value)}
+                      type="text"
+                      placeholder={session?.user?.Semester as string}
+                    />
+                  </div>
+                </div>
+              )
+            }
           </div>
         </div>
 
